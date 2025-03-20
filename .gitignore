@@ -1,0 +1,10 @@
+# Node
+node_modules/
+build/
+dist/
+
+# Svelte
+.svelte-kit/
+
+# Environment variables
+.env

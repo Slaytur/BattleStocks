@@ -1,0 +1,42 @@
+{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "target": "ESNext",
+
+    "moduleResolution": "Bundler",
+
+    "strict": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true,
+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.svelte",
+    "../shared/",
+    "svelte-kit/ambient.d.ts",
+    "svelte-kit/non-ambient.d.ts",
+    "svelte-kit/types/**/$types.d.ts",
+    "vite.config.ts",
+    "global.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/service-worker.ts",
+    "src/service-worker.d.ts",
+    "src/service-worker/**/*.ts",
+    "src/service-worker/**/*.d.ts"
+  ]
+}

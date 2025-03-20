@@ -1,0 +1,36 @@
+{
+    "name": "snoopies-wics",
+    "description": "",
+    "version": "0.0.1",
+    "author": "DamienVesper",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "lint": "eslint . --fix",
+        "lint:ci": "eslint ."
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.23.0",
+        "@stylistic/eslint-plugin": "^4.2.0",
+        "@types/bun": "latest",
+        "@types/eslint__js": "^9.14.0",
+        "eslint-plugin-svelte": "^3.3.3",
+        "globals": "^16.0.0",
+        "pg": "^8.14.1",
+        "typescript-eslint": "^8.27.0"
+    },
+    "peerDependencies": {
+        "typescript": "^5.8.2"
+    },
+    "license": "AGPL-3.0-only",
+    "workspaces": [
+        "client"
+    ],
+    "dependencies": {
+        "@oslojs/crypto": "^1.0.1",
+        "@oslojs/encoding": "^1.1.0",
+        "arctic": "^3.5.0",
+        "gsap": "^3.12.7",
+        "svelte-typewriter": "^3.2.3"
+    }
+}

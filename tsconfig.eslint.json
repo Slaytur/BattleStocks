@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.mts",
+    "**/*.js",
+    "**/*.mjs",
+    "**/*.svelte"
+  ],
+  "exclude": [
+    "node_modules",
+    ".svelte-kit/",
+    "dist/",
+    "src/service-worker.ts",
+    "src/service-worker.d.ts",
+    "src/service-worker/**/*.ts",
+    "src/service-worker/**/*.d.ts",
+    "vite.config.ts.*"
+  ]
+}

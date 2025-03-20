@@ -1,0 +1,43 @@
+{
+  "name": "@snoopies-wics/client",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite dev",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@poppanator/sveltekit-svg": "^5.0.0",
+    "@sveltejs/kit": "^2.17.3",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@tailwindcss/vite": "^4.0.15",
+    "@types/bootstrap": "^5.2.10",
+    "@types/eslint__js": "^9.14.0",
+    "@types/jquery": "^3.5.32",
+    "lightningcss": "^1.29.1",
+    "sass-embedded": "^1.85.1",
+    "svelte": "^5.20.4",
+    "svelte-adapter-bun": "^0.5.2",
+    "svgo": "^3.3.2",
+    "tailwindcss": "^4.0.15",
+    "vite": "^6.2.0",
+    "vite-plugin-image-optimizer": "^1.1.8"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/svelte-fontawesome": "^0.2.3",
+    "@popperjs/core": "^2.11.8",
+    "arctic": "^3.5.0",
+    "bootstrap": "^5.3.3",
+    "drizzle-kit": "^0.30.5",
+    "drizzle-orm": "^0.40.1",
+    "hono": "^4.7.5",
+    "jquery": "^3.7.1",
+    "postgres": "^3.4.5",
+    "zod": "^3.24.2"
+  }
+}

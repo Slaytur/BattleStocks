@@ -34,7 +34,7 @@
                     <div class="tw:mb-4 tw:!text-text-dark">
                         <ul>
                             {#each servers as server} 
-                                <div class="tw:flex tw:items-center">
+                                <div class="tw:flex tw:items-center ">
                                     <li>{server}</li>
                                     <button type="submit" class="btn btn-block tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
                                         <div>Join Game</div>

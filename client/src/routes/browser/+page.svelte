@@ -26,6 +26,7 @@
     <div class="tw:container tw:mx-auto tw:w-1/4">
         <div class="card tw:!border-secondary-dark tw:!bg-background-dark">
             <div class="card-body">
+                <p class="tw:flex tw:justify-end">{servers.length}/4 servers open</p>
                 <div class="tw:mb-4 tw:text-center">
                     <label for="email" class="form-label tw:text-text-dark">Search</label>
                     <input type="email" bind:value={query} name="query" id="query" class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" placeholder="Server1" />

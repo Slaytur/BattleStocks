@@ -24,11 +24,11 @@
 <main bind:this={main}>
     <h1 class="tw:!text-text tw:!my-10 tw:text-center">Server Browser</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
-        <div class="card tw:!bg-secondary/30">
+        <div class="card tw:!border-secondary-dark tw:!bg-background-dark">
             <div class="card-body">
                 <div class="tw:mb-4 tw:text-center">
-                    <label for="email" class="form-label tw:text-text">Search</label>
-                    <input type="email" bind:value={query} name="query" id="query" class="form-control tw:!bg-primary tw:!border-primary" placeholder="Server1" />
+                    <label for="email" class="form-label tw:text-text-dark">Search</label>
+                    <input type="email" bind:value={query} name="query" id="query" class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" placeholder="Server1" />
                 </div>
                 <form action="">
                     <div class="tw:mb-4 tw:!text-text">
@@ -44,7 +44,7 @@
                         </ul>
                     </div>
                     <div class="tw:flex">
-                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
+                        <button onclick={(() => window.open("/browser/create", "_self"))} class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
                             <div>Create Game</div>
                         </button>
                     </div>

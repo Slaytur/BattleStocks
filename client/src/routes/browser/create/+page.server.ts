@@ -1,5 +1,5 @@
 import { redirect } from "@sveltejs/kit";
-import type { Actions, RequestEvent } from "../$types";
+import type { Actions, RequestEvent } from "../../$types";
 
 export async function load (event: RequestEvent) {
     if (event.locals.session !== null && event.locals.user !== null) return redirect(302, "/");
@@ -7,8 +7,8 @@ export async function load (event: RequestEvent) {
 }
 
 export const actions = {
-    signup: async (event) => {
-        // call to authrftghyuji - register user 
+    create: async (event: RequestEvent) => {
+        // send request to create new server
         return redirect(302, "/");
     }
 } satisfies Actions;

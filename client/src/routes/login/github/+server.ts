@@ -11,7 +11,7 @@ export function GET (event: RequestEvent): Response {
     event.cookies.set("github_oauth_state", state, {
         httpOnly: true,
         maxAge: 60 * 10,
-        secure: import.meta.env.PROD,
+        secure: import.meta.env.ENV === "production",
         path: "/",
         sameSite: "lax"
     });

@@ -3,7 +3,7 @@
 </script>
 
 <header>
-    <nav class="navbar navbar-dark navbar-expand-lg tw:bg-transparent">
+    <nav class="navbar navbar navbar-expand-lg tw:bg-transparent">
         <div class="container-fluid">
             <a class="navbar-brand tw:font-chewy" href="/">
                 <!-- <img src={Logo} alt="Voyago logo" width="30" height="24" class="d-inline-block align-text-top hover:tw:rotate-90 tw:transition-all"> -->
@@ -23,13 +23,13 @@
                 </ul>
                 <ul class="navbar-nav ms-auto tw:font-medium tw:mr-4">
                     <li class="nav-item tw:me-2">
-                        <a href="/signup" class="btn tw:!bg-primary tw:!text-text-dark tw:hover:brightness-50 tw:tracking-wide tw:duration-300 tw:!transition-all">Sign Up</a>
+                        <a href="/signup" class="btn tw:!bg-primary tw:!text-text tw:hover:brightness-50 tw:tracking-wide tw:duration-300 tw:!transition-all">Sign Up</a>
                     </li>
                     <li class="nav-item tw:me-2">
-                        <a href="/login" class="btn tw:!bg-primary tw:!text-text-dark tw:hover:brightness-50 tw:tracking-wide tw:duration-300 tw:!transition-all">Sign In</a>
+                        <a href="/login" class="btn tw:!bg-primary tw:!text-text tw:hover:brightness-50 tw:tracking-wide tw:duration-300 tw:!transition-all">Sign In</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/account" class="btn tw:!bg-primary tw:!text-text-dark tw:hover:brightness-50 tw:tracking-wide tw:duration-300 tw:!transition-all">Account</a>
+                        <a href="/account" class="btn tw:!bg-primary tw:!text-text tw:hover:brightness-50 tw:tracking-wide tw:duration-300 tw:!transition-all">Account</a>
                     </li>
                 </ul>
             </div>

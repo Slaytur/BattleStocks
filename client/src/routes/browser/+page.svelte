@@ -7,13 +7,13 @@
 
     let main: HTMLElement;
 
-    let query: String = $state("");
+    let query: string = $state("");
 
     let servers = ["server1", "server2", "server3"];
 
     onMount(() => {
         const ctx = gsap.context(() => {
-            gsap.set(main, { y: -150, opacity: 0 })
+            gsap.set(main, { y: -150, opacity: 0 });
             gsap.to(main, { y: 0, opacity: 1 });
         }, main);
 
@@ -22,21 +22,21 @@
 </script>
 
 <main bind:this={main}>
-    <h1 class="tw:!text-text-dark tw:!my-10 tw:text-center">Server Browser</h1>
+    <h1 class="tw:!text-text tw:!my-10 tw:text-center">Server Browser</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
-        <div class="card tw:!bg-secondary-dark/30">
+        <div class="card tw:!bg-secondary/30">
             <div class="card-body">
                 <div class="tw:mb-4 tw:text-center">
-                    <label for="email" class="form-label tw:text-text-dark">Search</label>
-                    <input type="email" bind:value={query} name="query" id="query" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" placeholder="Server1" />
+                    <label for="email" class="form-label tw:text-text">Search</label>
+                    <input type="email" bind:value={query} name="query" id="query" class="form-control tw:!bg-primary tw:!border-primary" placeholder="Server1" />
                 </div>
                 <form action="">
-                    <div class="tw:mb-4 tw:!text-text-dark">
+                    <div class="tw:mb-4 tw:!text-text">
                         <ul>
-                            {#each servers as server} 
-                                <div class="tw:flex tw:items-center ">
+                            {#each servers as server}
+                                <div class="tw:flex tw:items-center">
                                     <li>{server}</li>
-                                    <button type="submit" class="btn btn-block tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
+                                    <button type="submit" class="btn btn-block tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
                                         <div>Join Game</div>
                                     </button>
                                 </div>
@@ -44,11 +44,11 @@
                         </ul>
                     </div>
                     <div class="tw:flex">
-                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
+                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
                             <div>Create Game</div>
                         </button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

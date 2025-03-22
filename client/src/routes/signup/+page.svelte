@@ -23,7 +23,7 @@
 </script>
 
 <main bind:this={main}>
-    <h1 class="tw:!text-text-dark tw:!my-10 tw:text-center">Sign Up</h1>
+    <h1 class="tw:!text-text tw:!my-10 tw:text-center">Sign Up</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
         <div class="card tw:!border-secondary-dark tw:!bg-background-dark">
             <div class="card-body">
@@ -46,7 +46,7 @@
                             <FontAwesomeIcon icon={faArrowRightToBracket} />
                         </button>
                     {:else}
-                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || confirmPassword === ""}>
+                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || confirmPassword === ""}>
                             Sign Up
                             <FontAwesomeIcon spin icon={faArrowRightToBracket} />
                         </button>

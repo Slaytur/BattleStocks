@@ -11,10 +11,10 @@ import {
     GOOGLE_CLIENT_SECRET,
     GITHUB_CLIENT_ID,
     GITHUB_CLIENT_SECRET,
-    PROD
+    ENV
 } from "$env/static/private";
 
-const callbackStub = PROD
+const callbackStub = ENV === "production"
     ? "https://snoopies-wics.io"
     : "http://localhost:3000";
 

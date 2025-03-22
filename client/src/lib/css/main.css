@@ -8,19 +8,12 @@
 
 @theme {
     /* Light theme */
-    --color-text: hsl(221, 100%, 6%);
+    /* --color-text: hsl(221, 100%, 6%);
     --color-background: hsl(222, 100%, 98%);
     --color-primary: hsl(215, 97%, 29%);
     --color-secondary: hsl(260, 98%, 68%);
-    --color-accent: hsl(273, 98%, 50%);
+    --color-accent: hsl(273, 98%, 50%); */
     
-    /* Dark theme */
-    --color-text-dark: hsl(221, 100%, 94%);
-    --color-background-dark: hsl(222, 100%, 2%);
-    --color-primary-dark: hsl(215, 97%, 71%);
-    --color-secondary-dark: hsl( 260, 98%, 32%);
-    --color-accent-dark: hsl(273, 98%, 50%);
-
     /* Brands */
     --color-discord: hsl(235, 86%, 65%);
     --color-google: hsl(217, 89%, 61%);
@@ -40,6 +33,26 @@
     }
 }
 
+@layer components {
+    .inputDarkModeOverride {
+        &:-webkit-autofill {
+            box-shadow: 0 0 0 30px #1c1c1d inset;
+        }
+
+        &:-webkit-autofill:hover {
+            box-shadow: 0 0 0 30px #1c1c1d inset;
+        }
+
+        &:-webkit-autofill:focus {
+            box-shadow: 0 0 0 30px #1c1c1d inset;
+        }
+
+        &:-webkit-autofill:active {
+            box-shadow: 0 0 0 30px #1c1c1d inset;
+        }
+    }
+}
+
 /* Light mode overrides */
 html, body {
     background-color: theme(--color-background);
@@ -47,7 +60,17 @@ html, body {
 
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
+    @theme {
+        /* Dark theme */
+        --color-text: hsl(221, 100%, 94%);
+        --color-background: hsl(210, 16%, 15%);
+        --color-background-secondary: hsl(222, 100%, 2%);
+        --color-primary: hsl(215, 77%, 61%);
+        --color-secondary: hsl(260, 83%, 30%);
+        --color-accent: hsl(273, 100%, 50%);
+    }
+
     html, body {
-        background-color: theme(--color-background-dark);
+        background-color: theme(--color-background);
     }
 }

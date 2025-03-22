@@ -1,4 +1,4 @@
-.btn-darken:hover:not(.active), .btn-darken:active:not(.active) {
+.btnen:hover:not(.active), .btnen:active:not(.active) {
     color: inherit;
 
     filter: brightness(80%);

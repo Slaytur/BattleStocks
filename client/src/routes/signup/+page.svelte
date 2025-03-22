@@ -40,9 +40,11 @@
                         <label for="password" class="form-label tw:text-text">Confirm Password</label>
                         <input type="password" bind:value={confirmPassword} class="form-control tw:!text-text tw:!bg-[#00000080] tw:!border-[#00000080] tw:!placeholder-text" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
-                    <button type="submit" class="btn btn-block tw:w-full btn-{password !== confirmPassword && password !== "" ? "danger" : "success"}" disabled={email === "" || password === "" || confirmPassword === "" || password !== confirmPassword}>
+                    <button type="submit" class="btn btn-block tw:w-full btn-{(password !== confirmPassword && password !== "") || (password.length < 4 && password !== "") ? "danger" : "success"}" disabled={email === "" || password === "" || confirmPassword === "" || password.length < 4 || password !== confirmPassword}>
                         {#if password !== confirmPassword && password !== ""}
                             Passwords do not match.
+                        {:else if password.length < 4 && password !== ""}
+                            Password too short.
                         {:else}
                             Sign Up
                         {/if}

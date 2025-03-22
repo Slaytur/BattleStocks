@@ -3,9 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "vite build",
-    "dev": "vite dev",
-    "preview": "vite preview"
+    "build": "bun --bun vite build",
+    "dev": "bun --bun vite dev",
+    "preview": "bun --bun vite preview"
   },
   "devDependencies": {
     "@poppanator/sveltekit-svg": "^5.0.0",

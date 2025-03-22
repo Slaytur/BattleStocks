@@ -45,7 +45,8 @@ export async function loginUserFromCreds (email: string, password: string): Prom
     const user = await getUserFromEmail(email);
 
     // console.log(user, password);
-    const res = await(new Argon2id()).verify(user?.password as string, password as string);
+    if (!user) return false;
+    const res = await (new Argon2id()).verify(user.password!, password);
 
     return res;
 }
@@ -54,4 +55,4 @@ export async function getUserFromEmail (email: string): Promise<UserDoc | null> 
     // console.log(`EMAIL`, email);
     const user = await db.select().from(User).where(eq(User.email, email));
     return user as unknown as UserDoc;
-}   
+}

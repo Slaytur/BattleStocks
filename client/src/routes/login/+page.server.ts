@@ -13,8 +13,8 @@ export const actions: Actions = {
         const user = {
             email: data.get("email") as string,
             password: data.get("password") as string
-        }
+        };
         const res = await loginUserFromCreds(user.email, user.password);
-        console.log(res);   
+        console.log(res);
     }
-}
+};

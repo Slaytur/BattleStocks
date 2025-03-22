@@ -12,3 +12,4 @@ export const actions = {
         return redirect(302, "/");
     }
 } satisfies Actions;
+    

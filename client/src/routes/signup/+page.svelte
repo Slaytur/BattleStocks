@@ -48,7 +48,7 @@
                     {:else}
                         <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || confirmPassword === ""}>
                             Sign Up
-                            <FontAwesomeIcon spin icon={faArrowRightToBracket} />
+                            <FontAwesomeIcon icon={faArrowRightToBracket} />
                         </button>
                     {/if}
                 </form>

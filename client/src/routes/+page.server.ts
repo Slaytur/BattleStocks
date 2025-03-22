@@ -15,10 +15,10 @@ async function action (event: RequestEvent) {
     return redirect(302, "/login");
 }
 
-export async function load (event: RequestEvent) {
-    if (event.locals.session === null || event.locals.user === null) return redirect(302, "/login");
-    return { user: event.locals.user };
-}
+// export async function load (event: RequestEvent) {
+//     if (event.locals.session === null || event.locals.user === null) return redirect(302, "/login");
+//     return { user: event.locals.user };
+// }
 
 export const actions: Actions = {
     default: action

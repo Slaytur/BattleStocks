@@ -25,7 +25,7 @@
 <main bind:this={main}>
     <h1 class="tw:!text-text tw:!my-10 tw:text-center">Sign Up</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
-        <div class="card tw:!border-secondary-dark tw:!bg-background-dark">
+        <div class="card tw:!bg-background-secondary">
             <div class="card-body">
                 <form action="?/signup" use:enhance>
                     <div class="tw:mb-4">

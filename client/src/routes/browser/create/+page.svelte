@@ -4,12 +4,14 @@
 
     import gsap from "gsap";
     import { onMount } from "svelte";
+    import { number } from "zod";
 
     let main: HTMLElement;
 
     let name: String = $state("");
     let pin: String = $state("");
-    let phases: number = $state(1);
+    let phases: number = $state(4);
+    let safePhases: number = $derived(Math.min(Math.max(phases, 2), 10))
 
     let servers = ["server1", "server2", "server3"];
 
@@ -26,7 +28,7 @@
 <main bind:this={main}>
     <h1 class="tw:!text-text-dark tw:!my-10 tw:text-center">Server Browser</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
-        <div class="card tw:!border-secondary-dark tw:!bg-background-dark">
+        <div class="card tw:!bg-background-secondary">
             <div class="card-body">
                 <div class="tw:mb-4 tw:text-center">
                     <label for="email" class="form-label tw:text-text-dark">Server Name</label>
@@ -40,8 +42,8 @@
 
                 <div class="tw:mb-4 tw:text-center tw:!text-text-dark">
                     <label for="email" class="form-label tw:text-text-dark">Number of Phases</label>
-                    <input type="range" min=1 max=10 bind:value={phases} name="phases" id="phases" class="tw:text-center form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70 tw:accent-emerald-600" placeholder="Server Name" />
-                    {phases}
+                    <input type="range" min=2 max=10 bind:value={phases} name="phases" id="phases" class="tw:text-center form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70 tw:accent-emerald-600" placeholder="Server Name" />
+                    <input type="number" min=2 max=10 bind:value={phases} name="phases" id="phases" class="tw:!w-[80px] tw:!mx-auto tw:!my-2 tw:text-center form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70 tw:accent-emerald-600" placeholder="Server Name" />
                 </div>
                 
                 <form action="">

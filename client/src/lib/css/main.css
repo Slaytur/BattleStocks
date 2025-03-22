@@ -11,8 +11,8 @@
     --color-text: hsl(221, 100%, 94%);
     --color-background: hsl(134, 46%, 83%);
     --color-background-secondary: hsl(222, 100%, 2%);
-    --color-primary: hsl(215, 77%, 61%);
-    --color-secondary: hsl(260, 83%, 30%);
+    --color-primary: #2f6141;
+    --color-secondary: #51d381;
     --color-accent: hsl(273, 100%, 50%);
 
     /* Brands */
@@ -63,12 +63,13 @@ html, body {
 @media (prefers-color-scheme: dark) {
     @theme {
         /* Dark theme */
-        --color-text: hsl(221, 100%, 94%);
-        --color-background: hsl(0, 0%, 15%);
-        --color-background-secondary: hsl(0, 0%, 5%);
+        /* --color-text: hsl(221, 100%, 94%);
+        --color-background: #23274C;
+        --color-secondary: #4C4C9D; */
+        /* --color-background-secondary: hsl(0, 0%, 5%);
         --color-primary: hsl(215, 77%, 61%);
         --color-secondary: hsl(260, 83%, 30%);
-        --color-accent: hsl(273, 100%, 50%);
+        --color-accent: hsl(273, 100%, 50%); */
     }
 
     html, body {

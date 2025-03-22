@@ -1,37 +1,51 @@
 <script lang="ts">
-// import Logo from "$lib/images/icon.svg";
+  import { page } from "$app/state";
+  import { faArrowRightFromBracket, faGaugeSimpleHigh } from "@fortawesome/free-solid-svg-icons";
+  import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
+
+    // import Logo from "$lib/images/icon.svg";
+
+    let scrollY: number = $state(0);
+    let nav: HTMLElement | undefined = $state() as undefined;
 </script>
 
+<svelte:window bind:scrollY={scrollY} />
 <header>
-    <nav class="navbar navbar navbar-expand-lg tw:bg-transparent">
+    <nav bind:this={nav} class="navbar navbar-dark navbar-expand-lg tw:bg-[#2f6141]" class:scrolled={scrollY !== nav?.offsetTop}>
         <div class="container-fluid">
             <a class="navbar-brand tw:font-chewy" href="/">
                 <!-- <img src={Logo} alt="Voyago logo" width="30" height="24" class="d-inline-block align-text-top hover:tw:rotate-90 tw:transition-all"> -->
-                snoopies-wics
+                BattleStocks
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar-nav">
-                <ul class="navbar-nav me-auto tw:font-medium">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/browser">Server Browser</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto tw:font-medium tw:mr-4">
-                    <li class="nav-item tw:me-2">
-                        <a href="/signup" class="btn tw:!bg-primary tw:!text-text tw:hover:brightness-50 tw:tracking-wide tw:duration-300 tw:!transition-all">Sign Up</a>
-                    </li>
-                    <li class="nav-item tw:me-2">
-                        <a href="/login" class="btn tw:!bg-primary tw:!text-text tw:hover:brightness-50 tw:tracking-wide tw:duration-300 tw:!transition-all">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/account" class="btn tw:!bg-primary tw:!text-text tw:hover:brightness-50 tw:tracking-wide tw:duration-300 tw:!transition-all">Account</a>
-                    </li>
-                </ul>
+                <div class="navbar-nav me-auto tw:font-medium">
+                    <a class="nav-link" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
+                    <a class="nav-link" class:active={page.url.pathname === "/servers"} href="/servers">Server Browser</a>
+                </div>
+                <div class="navbar-nav ms-auto tw:font-medium">
+                    {#if false}
+                        <div class="dropdown tw:me-2">
+                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Account</button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a href="/dashboard" class="dropdown-item">
+                                    <FontAwesomeIcon icon={faGaugeSimpleHigh} />
+                                    Dashboard
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a href="/dashboard" class="dropdown-item">
+                                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                                    Sign Out
+                                </a></li>
+                            </ul>
+                        </div>
+                    {:else}
+                        <a href="/signup" class="btn btn-success tw:me-2">Sign Up</a>
+                        <a href="/login" class="btn btn-success">Sign In</a>
+                    {/if}
+                </div>
             </div>
         </div>
     </nav>

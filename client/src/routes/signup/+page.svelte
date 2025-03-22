@@ -23,34 +23,31 @@
 </script>
 
 <main bind:this={main}>
-    <h1 class="tw:!text-text tw:!my-10 tw:text-center">Sign Up</h1>
+    <h1 class="tw:!my-10 tw:text-center">Sign Up</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
-        <div class="card tw:!bg-background-secondary">
+        <div class="card tw:!bg-primary tw:!border-primary">
             <div class="card-body">
                 <form action="?/signup" use:enhance>
                     <div class="tw:mb-4">
-                        <label for="email" class="form-label tw:text-text-dark">Email Address</label>
-                        <input type="email" bind:value={email} name="email" id="email" class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" placeholder="example@example.com" autocomplete="email" required />
+                        <label for="email" class="form-label tw:text-text">Email Address</label>
+                        <input type="email" bind:value={email} name="email" id="email" class="form-control tw:!text-text tw:!bg-[#00000080] tw:!border-[#00000080] tw:!placeholder-text" placeholder="example@example.com" autocomplete="email" required />
                     </div>
                     <div class="tw:mb-4">
-                        <label for="password" class="form-label tw:text-text-dark">Password</label>
-                        <input type="password" bind:value={password} class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
+                        <label for="password" class="form-label tw:text-text">Password</label>
+                        <input type="password" bind:value={password} class="form-control tw:!text-text tw:!bg-[#00000080] tw:!border-[#00000080] tw:!placeholder-text" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
                     <div class="tw:mb-4" hidden={!password.length}>
-                        <label for="password" class="form-label tw:text-text-dark">Confirm Password</label>
-                        <input type="password" bind:value={confirmPassword} class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
+                        <label for="password" class="form-label tw:text-text">Confirm Password</label>
+                        <input type="password" bind:value={confirmPassword} class="form-control tw:!text-text tw:!bg-[#00000080] tw:!border-[#00000080] tw:!placeholder-text" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
-                    {#if password !== confirmPassword}
-                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-red-600 tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || confirmPassword === ""}>
+                    <button type="submit" class="btn btn-block tw:w-full btn-{password !== confirmPassword && password !== "" ? "danger" : "success"}" disabled={email === "" || password === "" || confirmPassword === "" || password !== confirmPassword}>
+                        {#if password !== confirmPassword && password !== ""}
                             Passwords do not match.
-                            <FontAwesomeIcon icon={faArrowRightToBracket} />
-                        </button>
-                    {:else}
-                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || confirmPassword === ""}>
+                        {:else}
                             Sign Up
-                            <FontAwesomeIcon icon={faArrowRightToBracket} />
-                        </button>
-                    {/if}
+                        {/if}
+                        <FontAwesomeIcon icon={faArrowRightToBracket} />
+                    </button>
                 </form>
             </div>
         </div>

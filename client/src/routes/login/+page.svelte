@@ -27,10 +27,10 @@
 </script>
 
 <main bind:this={main}>
-    <h1 class="tw:!text-text tw:!my-10 tw:text-center">Log In</h1>
+    <h1 class="tw:!my-10 tw:text-center">Log In</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
         <div class="err-msg" hidden={errMsg === ""}>{errMsg}</div>
-        <div class="card tw:!bg-background-secondary">
+        <div class="card tw:!bg-primary tw:!border-primary">
             <div class="card-body">
                 <div class="tw:flex tw:flex-col">
                     <a class="btn btn-block btn-success tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all tw:!flex tw:align-middle tw:justify-center" href="/login/discord" class:disabled={loginBtn === 0} onclick={(() => { loginBtn = 0; })}>
@@ -66,13 +66,13 @@
                 <form action="/login/email/callback" onsubmit={(() => { loginBtn = 3; })}>
                     <div class="tw:mb-4">
                         <label for="email" class="form-label tw:text-text">Email Address</label>
-                        <input bind:value={email} type="email" name="email" id="email" class="form-control tw:!text-text tw:!placeholder-text tw:!bg-background  tw:!border-background" placeholder="example@example.com" autocomplete="email" required />
+                        <input bind:value={email} type="email" name="email" id="email" class="form-control tw:!text-text tw:!bg-[#00000080] tw:!border-[#00000080] tw:!placeholder-text" placeholder="example@example.com" autocomplete="email" required />
                     </div>
                     <div class="tw:mb-4">
                         <label for="password" class="form-label tw:text-text">Password</label>
-                        <input bind:value={password} type="password" class="form-control tw:!text-text tw:!bg-background tw:!placeholder-text tw:!border-background" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
+                        <input bind:value={password} type="password" class="form-control tw:!text-text tw:!bg-[#00000080] tw:!border-[#00000080] tw:!placeholder-text" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
-                    <button type="submit" class="btn btn-block tw:w-full btn-primary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || loginBtn === 2}>
+                    <button type="submit" class="btn btn-block tw:w-full btn-success tw:!text-white  tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || loginBtn === 2}>
                         {#if loginBtn !== 2}
                             Log In
                             <FontAwesomeIcon icon={faArrowRightToBracket} />

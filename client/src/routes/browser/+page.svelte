@@ -7,8 +7,9 @@
 
     let main: HTMLElement;
 
-    let email: String = $state("");
-    let password: String = $state("");
+    let query: String = $state("");
+
+    let servers = ["server1", "server2", "server3"];
 
     onMount(() => {
         const ctx = gsap.context(() => {
@@ -25,18 +26,24 @@
     <div class="tw:container tw:mx-auto tw:w-1/4">
         <div class="card tw:!bg-secondary-dark/30">
             <div class="card-body">
+                <div class="tw:mb-4 tw:text-center">
+                    <label for="email" class="form-label tw:text-text-dark">Search</label>
+                    <input type="email" bind:value={query} name="query" id="query" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" placeholder="Server1" />
+                </div>
                 <form action="">
                     <div class="tw:mb-4 tw:!text-text-dark">
                         <ul>
-                            <li>
-                                Server 1
-                            </li>
+                            {#each servers as server} 
+                                <div class="tw:flex tw:items-center">
+                                    <li>{server}</li>
+                                    <button type="submit" class="btn btn-block tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
+                                        <div>Join Game</div>
+                                    </button>
+                                </div>
+                            {/each}
                         </ul>
                     </div>
                     <div class="tw:flex">
-                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
-                            <div>Join Game</div>
-                        </button>
                         <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
                             <div>Create Game</div>
                         </button>

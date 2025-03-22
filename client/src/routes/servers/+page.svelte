@@ -45,7 +45,7 @@
                         </ul>
                     </div>
                     <div class="tw:flex">
-                        <button onclick={(() => window.open("/browser/create", "_self"))} class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
+                        <button onclick={(() => window.open("/servers/create", "_self"))} class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
                             <div>Create Game</div>
                         </button>
                     </div>

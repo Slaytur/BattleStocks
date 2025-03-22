@@ -36,6 +36,7 @@
 
 <style>
     nav {
+        font-family: "Inter", sans-serif;
         border-bottom: 1px solid hsla(0, 100%, 100%, 10%);
     }
 </style>

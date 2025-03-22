@@ -1,0 +1,6 @@
+.btn-darken:hover:not(.active), .btn-darken:active:not(.active) {
+    color: inherit;
+
+    filter: brightness(80%);
+    transition: all 0.25s ease;
+}

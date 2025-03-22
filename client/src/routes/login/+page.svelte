@@ -1,9 +1,23 @@
 <script lang="ts">
     import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
     import { faDiscord, faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+
+    import gsap from "gsap";
+    import { onMount } from "svelte";
+
+    let main: HTMLElement;
+
+    onMount(() => {
+        const ctx = gsap.context(() => {
+            gsap.set(main, { y: -150, opacity: 0 })
+            gsap.to(main, { y: 0, opacity: 1 });
+        }, main);
+
+        return () => ctx.revert();
+    });
 </script>
 
-<main>
+<main bind:this={main}>
     <h1 class="tw:!text-text-dark tw:!my-10 tw:text-center">Log In</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
         <div class="card tw:!bg-secondary-dark/30">
@@ -23,9 +37,9 @@
                     </a>
                 </div>
                 <div class="tw:w-full tw:flex tw:justify-center tw:align-middle tw:mt-2">
-                    <hr class="tw:!text-text-dark tw:flex-1" style="margin-right: 1rem;">
-                    <span class="tw:text-text-dark">or</span>
-                    <hr class="tw:!text-text-dark tw:flex-1" style="margin-left: 1rem;">
+                    <hr class="tw:flex-1" style="margin-right: 0.5rem;">
+                    <span>or</span>
+                    <hr class="tw:flex-1" style="margin-left: 0.5rem;">
                 </div>
                 <form action="">
                     <div class="tw:mb-4">
@@ -45,3 +59,25 @@
         </div>
     </div>
 </main>
+
+<style lang="scss">
+    a, span {
+        font-family: "Roboto";
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    a {
+        font-size: 0.85rem;
+        line-height: 1.5rem;
+    }
+
+    span {
+        font-size: 0.85rem;
+        line-height: 2.1rem;
+        color: hsla(0, 0%, 75%);
+    }
+    hr {
+        color: hsl(0, 0%, 100%);
+    }
+</style>

@@ -30,10 +30,10 @@
     <h1 class="tw:!text-text-dark tw:!my-10 tw:text-center">Log In</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
         <div class="err-msg" hidden={errMsg === ""}>{errMsg}</div>
-        <div class="card tw:!bg-secondary-dark/30">
+        <div class="card tw:!border-secondary-dark tw:!bg-background-dark">
             <div class="card-body">
                 <div class="tw:flex tw:flex-col">
-                    <a class="btn btn-block tw:!bg-secondary-dark tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all" href="/login/discord" class:disabled={loginBtn === 0} onclick={(() => { loginBtn = 0; })}>
+                    <a class="btn btn-block tw:!border-secondary-dark tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all" href="/login/discord" class:disabled={loginBtn === 0} onclick={(() => { loginBtn = 0; })}>
                         {#if loginBtn !== 0}
                             <FontAwesomeIcon icon={faDiscord} />
                             Sign in with Discord
@@ -41,7 +41,7 @@
                             <div class="ui-spinner"></div>
                         {/if}
                     </a>
-                    <a class="btn btn-block tw:!bg-secondary-dark tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all" href="/login/github" class:disabled={loginBtn === 1} onclick={(() => { loginBtn = 1; })}>
+                    <a class="btn btn-block tw:!border-secondary-dark tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all" href="/login/github" class:disabled={loginBtn === 1} onclick={(() => { loginBtn = 1; })}>
                         {#if loginBtn !== 1}
                             <FontAwesomeIcon icon={faGithub} />
                             Sign in with GitHub
@@ -49,7 +49,7 @@
                             <div class="ui-spinner"></div>
                         {/if}
                     </a>
-                    <a class="btn btn-block tw:!bg-secondary-dark tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all" href="/login/google" class:disabled={loginBtn === 2} onclick={(() => { loginBtn = 2; })}>
+                    <a class="btn btn-block tw:!border-secondary-dark tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all" href="/login/google" class:disabled={loginBtn === 2} onclick={(() => { loginBtn = 2; })}>
                         {#if loginBtn !== 2}
                             <FontAwesomeIcon icon={faGoogle} />
                             Sign in with Google
@@ -66,11 +66,11 @@
                 <form action="/login/email/callback" onsubmit={(() => { loginBtn = 3; })}>
                     <div class="tw:mb-4">
                         <label for="email" class="form-label tw:text-text-dark">Email Address</label>
-                        <input bind:value={email} type="email" name="email" id="email" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" placeholder="example@example.com" autocomplete="email" required />
+                        <input bind:value={email} type="email" name="email" id="email" class="form-control tw:text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" placeholder="example@example.com" autocomplete="email" required />
                     </div>
                     <div class="tw:mb-4">
                         <label for="password" class="form-label tw:text-text-dark">Password</label>
-                        <input bind:value={password} type="password" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
+                        <input bind:value={password} type="password" class="form-control tw:!bg-background-dark tw:!placeholder-text-dark tw:!border-primary-dark/70" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
                     <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || loginBtn === 2}>
                         {#if loginBtn !== 2}

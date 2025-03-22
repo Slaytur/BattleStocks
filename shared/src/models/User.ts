@@ -6,11 +6,11 @@ import {
 
 export const User = pgTable("user", {
     id: serial("id").primaryKey(),
-    name: text("name"),
+    // name: text("name"),
     email: text("email"),
     password: text("password"),
 
-    googleId: text("googleId") // ,
+    // googleId: text("googleId") // ,
     // discordId: text("discordId"),
     // githubId: text("githubId")
 });

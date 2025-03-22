@@ -1,11 +1,9 @@
-import WebSocket from "ws";
+import { hc } from "hono/client";
 
-const ws = new WebSocket("ws://localhost:8080");
+const client = hc("http://127.0.0.1:8080/game");
 
-ws.on("open", () => {
+const ws = client.ws.$ws(0);
+
+ws.onopen = () => {
     console.log("connected");
-});
-
-ws.on("close", () => {
-    console.log("connected");
-});
+};

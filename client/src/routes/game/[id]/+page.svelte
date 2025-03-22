@@ -5,13 +5,13 @@
     import "../client.ts";
 
     let visibleGame = false;
-    function toggleVisibleGame() {
-      visibleGame = !visibleGame; 
+    function toggleVisibleGame () {
+        visibleGame = !visibleGame;
     };
 
     let visibleOverlay = true;
-    function toggleOverlay() {
-      visibleOverlay = !visibleOverlay; 
+    function toggleOverlay () {
+        visibleOverlay = !visibleOverlay;
     };
 </script>
 
@@ -19,13 +19,13 @@
 <button on:click={toggleGame}>Game</button>
 
 {#if visibleGame}
-<article>
-    {id}
-</article>
+    <article>
+        {id}
+    </article>
 {/if}
 
 {#if visibleOverlay}
-<overlay>
-  OVERLAY
-</overlay>
+    <overlay>
+        OVERLAY
+    </overlay>
 {/if}

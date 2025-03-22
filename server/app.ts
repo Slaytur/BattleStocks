@@ -21,7 +21,7 @@ app.use(
 
 app.get("/game", upgradeWebSocket(c => ({
     onOpen (e, ws) {
-        core.logger.info(`WebSocket`, `Player connected.`);
+        core.logger.info("WebSocket", "Player connected.");
     },
     onMessage (e, ws) {},
     onClose (e, ws) {}

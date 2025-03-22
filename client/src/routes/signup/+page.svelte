@@ -3,6 +3,8 @@
     import { enhance } from "$app/forms";
 
     import gsap from "gsap";
+    import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+    import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
 
     let main: HTMLElement;
 
@@ -25,7 +27,7 @@
     <div class="tw:container tw:mx-auto tw:w-1/4">
         <div class="card tw:!bg-secondary-dark/30">
             <div class="card-body">
-                <form action="" use:enhance>
+                <form action="?/signup" use:enhance>
                     <div class="tw:mb-4">
                         <label for="email" class="form-label tw:text-text-dark">Email Address</label>
                         <input type="email" bind:value={email} name="email" id="email" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" placeholder="example@example.com" autocomplete="email" required />
@@ -38,10 +40,17 @@
                         <label for="password" class="form-label tw:text-text-dark">Confirm Password</label>
                         <input type="password" bind:value={confirmPassword} class="form-control tw:!bg-primary-dark tw:!border-primary-dark" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
-                    <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
-                        <div class="ui-spinner"></div>
-                        <!-- Log In -->
-                    </button>
+                    {#if password !== confirmPassword}
+                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-red-600 tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || confirmPassword === ""}>
+                            Password does not match.
+                            <FontAwesomeIcon icon={faArrowRightToBracket} />
+                        </button>
+                    {:else}
+                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || confirmPassword === ""}>
+                            Sign Up
+                            <FontAwesomeIcon spin icon={faArrowRightToBracket} />
+                        </button>
+                    {/if}
                 </form>
             </div>
         </div>

@@ -66,11 +66,11 @@
                 <form action="/login/email/callback" onsubmit={(() => { loginBtn = 3; })}>
                     <div class="tw:mb-4">
                         <label for="email" class="form-label tw:text-text-dark">Email Address</label>
-                        <input bind:value={email} type="email" name="email" id="email" class="form-control tw:text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" placeholder="example@example.com" autocomplete="email" required />
+                        <input bind:value={email} type="email" name="email" id="email" class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" placeholder="example@example.com" autocomplete="email" required />
                     </div>
                     <div class="tw:mb-4">
                         <label for="password" class="form-label tw:text-text-dark">Password</label>
-                        <input bind:value={password} type="password" class="form-control tw:!bg-background-dark tw:!placeholder-text-dark tw:!border-primary-dark/70" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
+                        <input bind:value={password} type="password" class="form-control tw:!text-text-dark tw:!bg-background-dark tw:!placeholder-text-dark tw:!border-primary-dark/70" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
                     <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || loginBtn === 2}>
                         {#if loginBtn !== 2}

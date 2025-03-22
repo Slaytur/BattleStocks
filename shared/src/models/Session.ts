@@ -6,7 +6,7 @@ import {
     timestamp
 } from "drizzle-orm/pg-core";
 
-import { User } from "./User.js";
+import { User } from "./User";
 
 export const Session = pgTable("session", {
     id: text("id").primaryKey(),
@@ -18,5 +18,3 @@ export const Session = pgTable("session", {
         mode: "date"
     }).notNull()
 });
-
-export type SessionDoc = InferSelectModel<typeof Session>;

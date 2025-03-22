@@ -1,0 +1,44 @@
+import { eq, type InferSelectModel } from "drizzle-orm";
+
+import { Argon2id } from "oslo/password";
+
+import { User } from "../models/User.js";
+import { db } from "../../../shared/src/db.js";
+
+export type UserDoc = InferSelectModel<typeof User>;
+
+export async function createUserFromGoogle (googleId: string, email: string, name: string, picture: string): Promise<UserDoc> {
+    const user: Partial<UserDoc> = {
+        name,
+        email,
+        googleId
+    };
+
+    db.insert(User).values(user);
+
+    const userDoc = await db.query.user.findFirst({ where: eq(User.googleId, googleId) });
+    return userDoc ?? user as UserDoc;
+}
+
+export async function getUserFromGoogleId (googleId: string): Promise<UserDoc | null> {
+    const user = await db.query.user.findFirst({ where: eq(User.googleId, googleId) });
+    return user ?? null;
+};
+
+export async function createUserFromCreds (email: string, password: string): Promise<UserDoc | null> {
+    const hash = await (new Argon2id()).hash(password);
+    const user: Partial<UserDoc> = {
+        email,
+        password: hash
+    };
+
+    if (!(await getUserFromEmail(email))) return null;
+
+    db.insert(User).values(user);
+    return user as UserDoc;
+}
+
+export async function getUserFromEmail (email: string): Promise<UserDoc> {
+    const user = await db.query.user.findFirst({ where: eq(User.email, email) });
+    return user as UserDoc;
+}

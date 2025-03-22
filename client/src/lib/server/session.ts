@@ -5,8 +5,11 @@ import type { RequestEvent } from "@sveltejs/kit";
 
 import { db } from "../../../../shared/src/db.js";
 
-import { type SessionDoc, Session } from "../../../../shared/src/models/Session.js";
-import { type UserDoc, User } from "../../../../shared/src/models/User.js";
+import { Session } from "../../../../shared/src/models/Session.js";
+import { User } from "../../../../shared/src/models/User.js";
+
+import type { SessionDoc } from "../../../../shared/src/modules/Session";
+import type { UserDoc } from "../../../../shared/src/modules/User";
 
 export type SessionValidationResult =
     | { session: SessionDoc, user: UserDoc }

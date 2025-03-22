@@ -2,8 +2,14 @@
   "name": "@snoopies-wics/shared",
   "private": true,
   "type": "module",
+  "scripts": {
+    "push:dev": "bunx drizzle-kit push --config=drizzle.config.ts",
+    "gen:dev": "bunx drizzle-kit generate --config=drizzle.config.ts",
+    "migrate:dev": "bunx drizzle-kit migrate --config=drizzle.config.ts"
+  },
   "dependencies": {
     "drizzle-orm": "^0.41.0",
+    "oslo": "^1.2.1",
     "postgres": "^3.4.5"
   }
 }

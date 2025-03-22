@@ -1,10 +1,10 @@
+import { decodeIdToken, type OAuth2Tokens } from "arctic";
+
 import { Google } from "$lib/server/oauth";
-import { createUserFromGoogle, getUserFromGoogleId } from "$lib/server/schema/User";
+import { createUserFromGoogle, getUserFromGoogleId } from "../../../../../../shared/src/modules/User";
 import { createSession, generateSessionToken, setSessionTokenCookie } from "$lib/server/session";
-import { decodeIdToken } from "arctic";
 
 import type { RequestEvent } from "./$types";
-import type { OAuth2Tokens } from "arctic";
 
 export async function GET (event: RequestEvent): Promise<Response> {
     const storedState = event.cookies.get("google_oauth_state") ?? null;

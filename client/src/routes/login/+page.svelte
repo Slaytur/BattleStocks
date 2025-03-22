@@ -7,6 +7,9 @@
 
     let main: HTMLElement;
 
+    let email: String = $state("");
+    let password: String = $state("");
+
     onMount(() => {
         const ctx = gsap.context(() => {
             gsap.set(main, { y: -150, opacity: 0 })
@@ -44,11 +47,11 @@
                 <form action="">
                     <div class="tw:mb-4">
                         <label for="email" class="form-label tw:text-text-dark">Email Address</label>
-                        <input type="email" name="email" id="email" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" placeholder="example@example.com" autocomplete="email" required />
+                        <input type="email" bind:value={email} name="email" id="email" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" placeholder="example@example.com" autocomplete="email" required />
                     </div>
                     <div class="tw:mb-4">
                         <label for="password" class="form-label tw:text-text-dark">Password</label>
-                        <input type="password" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
+                        <input type="password" bind:value={password} class="form-control tw:!bg-primary-dark tw:!border-primary-dark" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
                     <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
                         <div class="ui-spinner"></div>

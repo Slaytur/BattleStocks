@@ -17,6 +17,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/browser">Server Browser</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto tw:font-medium tw:mr-4">
                     <li class="nav-item tw:me-2">

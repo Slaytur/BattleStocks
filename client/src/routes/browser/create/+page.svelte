@@ -17,7 +17,7 @@
 
     onMount(() => {
         const ctx = gsap.context(() => {
-            gsap.set(main, { y: -150, opacity: 0 })
+            gsap.set(main, { y: -150, opacity: 0 });
             gsap.to(main, { y: 0, opacity: 1 });
         }, main);
 
@@ -45,14 +45,14 @@
                     <input type="range" min=2 max=10 bind:value={phases} name="phases" id="phases" class="tw:text-center form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70 tw:accent-emerald-600" placeholder="Server Name" />
                     <input type="number" min=2 max=10 bind:value={phases} name="phases" id="phases" class="tw:!w-[80px] tw:!mx-auto tw:!my-2 tw:text-center form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70 tw:accent-emerald-600" placeholder="Server Name" />
                 </div>
-                
+
                 <form action="">
                     <div class="tw:flex">
                         <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
                             <div>Create Game</div>
                         </button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

@@ -63,7 +63,7 @@
                     <span>or</span>
                     <hr class="tw:flex-1" style="margin-left: 0.5rem;">
                 </div>
-                <form action="/login/email/callback" onsubmit={(() => { loginBtn = 3; })}>
+                <form method="POST" action="?/login" onsubmit={(() => { loginBtn = 3; })}>
                     <div class="tw:mb-4">
                         <label for="email" class="form-label tw:text-text">Email Address</label>
                         <input bind:value={email} type="email" name="email" id="email" class="form-control tw:!text-text tw:!bg-[#00000080] tw:!border-[#00000080] tw:!placeholder-text" placeholder="example@example.com" autocomplete="email" required />

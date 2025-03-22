@@ -4,6 +4,7 @@ import { Argon2id } from "oslo/password";
 
 import { User } from "../models/User.js";
 import { db } from "../../../shared/src/db.js";
+import { userInfo } from "os";
 
 export type UserDoc = InferSelectModel<typeof User>;
 
@@ -34,11 +35,23 @@ export async function createUserFromCreds (email: string, password: string): Pro
 
     if (!(await getUserFromEmail(email))) return null;
 
+    // console.log(`beuh`, user);
+
     db.insert(User).values(user);
     return user as UserDoc;
 }
 
-export async function getUserFromEmail (email: string): Promise<UserDoc> {
-    const user = await db.query.user.findFirst({ where: eq(User.email, email) });
-    return user as UserDoc;
+export async function loginUserFromCreds (email: string, password: string): Promise<boolean> {
+    const user = await getUserFromEmail(email);
+
+    // console.log(user, password);
+    const res = await(new Argon2id()).verify(user?.password as string, password as string);
+
+    return res;
 }
+
+export async function getUserFromEmail (email: string): Promise<UserDoc | null> {
+    // console.log(`EMAIL`, email);
+    const user = await db.select().from(User).where(eq(User.email, email));
+    return user as unknown as UserDoc;
+}   

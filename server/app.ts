@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 import { createBunWebSocket } from "hono/bun";
 
 import type { ServerWebSocket } from "bun";
+import { core } from "./core";
 
 export const app = new Hono();
 export const { upgradeWebSocket, websocket } = createBunWebSocket();
@@ -19,7 +20,9 @@ app.use(
 );
 
 app.get("/game", upgradeWebSocket(c => ({
-    onOpen (e, ws) {},
+    onOpen (e, ws) {
+        core.logger.info(`WebSocket`, `Player connected.`);
+    },
     onMessage (e, ws) {},
     onClose (e, ws) {}
 })));

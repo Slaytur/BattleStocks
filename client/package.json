@@ -35,7 +35,6 @@
     "bootstrap": "^5.3.3",
     "drizzle-kit": "^0.30.5",
     "drizzle-orm": "^0.40.1",
-    "hono": "^4.7.5",
     "jquery": "^3.7.1",
     "postgres": "^3.4.5",
     "zod": "^3.24.2"

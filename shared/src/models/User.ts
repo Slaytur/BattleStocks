@@ -4,7 +4,7 @@ import {
     serial,
     text
 } from "drizzle-orm/pg-core";
-import { db } from "../db";
+import { db } from "../../../shared/src/db.js";
 
 export const User = pgTable("user", {
     id: serial("id").primaryKey(),

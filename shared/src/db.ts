@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 
-import { User } from "./schema/User";
-import { Session } from "./schema/Session";
+import { User } from "./models/User.js";
+import { Session } from "./models/Session.js";
 
 type Schema = { user: typeof User } & { session: typeof Session };
 

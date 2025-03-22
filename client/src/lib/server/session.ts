@@ -3,10 +3,10 @@ import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from "@oslojs/enco
 import { sha256 } from "@oslojs/crypto/sha2";
 import type { RequestEvent } from "@sveltejs/kit";
 
-import { db } from "./db.js";
+import { db } from "../../../../shared/src/db.js";
 
-import { type SessionDoc, Session } from "./schema/Session.js";
-import { type UserDoc, User } from "./schema/User.js";
+import { type SessionDoc, Session } from "../../../../shared/src/models/Session.js";
+import { type UserDoc, User } from "../../../../shared/src/models/User.js";
 
 export type SessionValidationResult =
     | { session: SessionDoc, user: UserDoc }

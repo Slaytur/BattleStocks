@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { page } from "$app/state";
-  import { faArrowRightFromBracket, faGaugeSimpleHigh } from "@fortawesome/free-solid-svg-icons";
-  import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
+    import { page } from "$app/state";
+    import { faArrowRightFromBracket, faGaugeSimpleHigh } from "@fortawesome/free-solid-svg-icons";
+    import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
 
     // import Logo from "$lib/images/icon.svg";
 
     let scrollY: number = $state(0);
-    let nav: HTMLElement | undefined = $state() as undefined;
+    let nav: HTMLElement | undefined = $state();
 </script>
 
 <svelte:window bind:scrollY={scrollY} />

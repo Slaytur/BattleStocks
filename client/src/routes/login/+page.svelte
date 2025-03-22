@@ -92,12 +92,7 @@
         font-weight: bold;
         text-transform: uppercase;
     }
-
-    a {
-        font-size: 0.85rem;
-    }
-
-    a, button {
+    a, button, .ui-spinner {
         line-height: 1.75rem;
     }
 

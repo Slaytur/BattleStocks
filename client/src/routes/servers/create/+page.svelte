@@ -8,10 +8,10 @@
 
     let main: HTMLElement;
 
-    let name: String = $state("");
-    let pin: String = $state("");
+    let name: string = $state("");
+    let pin: string = $state("");
     let phases: number = $state(4);
-    let safePhases: number = $derived(Math.min(Math.max(phases, 2), 10))
+    let safePhases: number = $derived(Math.min(Math.max(phases, 2), 10));
 
     let servers = ["server1", "server2", "server3"];
 

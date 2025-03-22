@@ -6,7 +6,7 @@ import {
     timestamp
 } from "drizzle-orm/pg-core";
 
-import { User } from "./User";
+import { User } from "./User.js";
 
 export const Session = pgTable("session", {
     id: text("id").primaryKey(),

@@ -27,7 +27,7 @@
     <div class="tw:container tw:mx-auto tw:w-1/4">
         <div class="card tw:!bg-primary tw:!border-primary">
             <div class="card-body">
-                <form action="?/signup" use:enhance>
+                <form method="POST" action="?/signup" use:enhance>
                     <div class="tw:mb-4">
                         <label for="email" class="form-label tw:text-text">Email Address</label>
                         <input type="email" bind:value={email} name="email" id="email" class="form-control tw:!text-text tw:!bg-[#00000080] tw:!border-[#00000080] tw:!placeholder-text" placeholder="example@example.com" autocomplete="email" required />

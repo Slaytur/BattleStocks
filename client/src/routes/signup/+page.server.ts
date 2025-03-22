@@ -1,14 +1,21 @@
 import { redirect } from "@sveltejs/kit";
 import type { Actions, RequestEvent } from "../$types";
-
+import { createUserFromCreds } from "../../../../shared/src/models/User";
+ 
 export async function load (event: RequestEvent) {
     if (event.locals.session !== null && event.locals.user !== null) return redirect(302, "/");
     return {};
 }
 
-export const actions = {
-    signup: async event => {
-        // call to authrftghyuji - register user
-        return redirect(302, "/");
+export const actions: Actions = {
+    signup: async ({ cookies, request, url }) => {
+        const data = await request.formData();
+        const user = {
+            email: data.get("email") as string,
+            password: data.get("password") as string
+        }
+        const res = await createUserFromCreds(user.email, user.password);
+
+        console.log(res);   
     }
-} satisfies Actions;
+}

@@ -7,9 +7,8 @@ export async function load (event: RequestEvent) {
 }
 
 export const actions = {
-    signup: async (event) => {
-        // call to authrftghyuji - register user 
+    signup: async event => {
+        // call to authrftghyuji - register user
         return redirect(302, "/");
     }
 } satisfies Actions;
-    

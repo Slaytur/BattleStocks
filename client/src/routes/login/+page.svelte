@@ -43,7 +43,7 @@
                 </div>
                 <form action="">
                     <div class="tw:mb-4">
-                        <label for="email" class="form-label tw:text-text-dark">Email address</label>
+                        <label for="email" class="form-label tw:text-text-dark">Email Address</label>
                         <input type="email" name="email" id="email" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" placeholder="example@example.com" autocomplete="email" required />
                     </div>
                     <div class="tw:mb-4">

@@ -25,24 +25,24 @@
 <main bind:this={main}>
     <h1 class="tw:!text-text-dark tw:!my-10 tw:text-center">Sign Up</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
-        <div class="card tw:!bg-secondary-dark/30">
+        <div class="card tw:!border-secondary-dark tw:!bg-background-dark">
             <div class="card-body">
                 <form action="?/signup" use:enhance>
                     <div class="tw:mb-4">
                         <label for="email" class="form-label tw:text-text-dark">Email Address</label>
-                        <input type="email" bind:value={email} name="email" id="email" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" placeholder="example@example.com" autocomplete="email" required />
+                        <input type="email" bind:value={email} name="email" id="email" class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" placeholder="example@example.com" autocomplete="email" required />
                     </div>
                     <div class="tw:mb-4">
                         <label for="password" class="form-label tw:text-text-dark">Password</label>
-                        <input type="password" bind:value={password} class="form-control tw:!bg-primary-dark tw:!border-primary-dark" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
+                        <input type="password" bind:value={password} class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
                     <div class="tw:mb-4" hidden={!password.length}>
                         <label for="password" class="form-label tw:text-text-dark">Confirm Password</label>
-                        <input type="password" bind:value={confirmPassword} class="form-control tw:!bg-primary-dark tw:!border-primary-dark" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
+                        <input type="password" bind:value={confirmPassword} class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" name="password" id="password" placeholder="Enter password" autocomplete="new-password" required />
                     </div>
                     {#if password !== confirmPassword}
                         <button type="submit" class="btn btn-block tw:w-full tw:!bg-red-600 tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled={email === "" || password === "" || confirmPassword === ""}>
-                            Password does not match.
+                            Passwords do not match.
                             <FontAwesomeIcon icon={faArrowRightToBracket} />
                         </button>
                     {:else}

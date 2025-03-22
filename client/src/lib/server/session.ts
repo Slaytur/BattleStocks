@@ -5,11 +5,11 @@ import type { RequestEvent } from "@sveltejs/kit";
 
 import { db } from "./db.js";
 
-import { type SessionTable, Session } from "./schema/Session.js";
-import { type UserTable, User } from "./schema/User.js";
+import { type SessionDoc, Session } from "./schema/Session.js";
+import { type UserDoc, User } from "./schema/User.js";
 
 export type SessionValidationResult =
-    | { session: SessionTable, user: UserTable }
+    | { session: SessionDoc, user: UserDoc }
     | { session: null, user: null };
 
 export function generateSessionToken (): string {
@@ -20,9 +20,9 @@ export function generateSessionToken (): string {
     return token;
 }
 
-export async function createSession (token: string, userId: number): Promise<SessionTable> {
+export async function createSession (token: string, userId: number): Promise<SessionDoc> {
     const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
-    const session: SessionTable = {
+    const session: SessionDoc = {
         id: sessionId,
         userId,
         expiresAt: new Date(Date.now() + 2592e6) // 30 days

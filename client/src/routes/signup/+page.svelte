@@ -1,16 +1,18 @@
 <script lang="ts">
-    import gsap from "gsap";
     import { onMount } from "svelte";
+    import { enhance } from "$app/forms";
+
+    import gsap from "gsap";
 
     let main: HTMLElement;
 
     let email: string = $state("");
-    let password: string = $state(""); 
+    let password: string = $state("");
     let confirmPassword: string = $state("");
 
     onMount(() => {
         const ctx = gsap.context(() => {
-            gsap.set(main, { y: -150, opacity: 0 })
+            gsap.set(main, { y: -150, opacity: 0 });
             gsap.to(main, { y: 0, opacity: 1 });
         }, main);
 
@@ -23,7 +25,7 @@
     <div class="tw:container tw:mx-auto tw:w-1/4">
         <div class="card tw:!bg-secondary-dark/30">
             <div class="card-body">
-                <form action="">
+                <form action="" use:enhance>
                     <div class="tw:mb-4">
                         <label for="email" class="form-label tw:text-text-dark">Email Address</label>
                         <input type="email" bind:value={email} name="email" id="email" class="form-control tw:!bg-primary-dark tw:!border-primary-dark" placeholder="example@example.com" autocomplete="email" required />

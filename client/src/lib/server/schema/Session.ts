@@ -19,4 +19,4 @@ export const Session = pgTable("session", {
     }).notNull()
 });
 
-export type SessionTable = InferSelectModel<typeof Session>;
+export type SessionDoc = InferSelectModel<typeof Session>;

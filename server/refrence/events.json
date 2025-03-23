@@ -1,0 +1,242 @@
+{
+    "event 1": {
+        "text": "A major international bank collapses due to risky investments, triggering a financial crisis. Interest rates spike, and consumer confidence plummets.",
+        "effects": {
+            "Banks & Financial Services": {"drift": -0.6, "volatility": 0.8, "jump": -0.7},
+            "Consumer Goods & Retail": {"drift": -0.4, "volatility": 0.6, "jump": -0.5},
+            "Mining & Precious Metals": {"drift": 0.5, "volatility": 0.4, "jump": 0.3}
+        }
+    },
+    "event 2": {
+        "text": "OPEC announces unexpected oil production cuts, driving crude oil prices to a 5-year high.",
+        "effects": {
+            "Oil & Gas": {"drift": 0.6, "volatility": 0.5, "jump": 0.6},
+            "Renewable Energy": {"drift": -0.3, "volatility": 0.4, "jump": -0.3},
+            "Shipping & Logistics": {"drift": -0.2, "volatility": 0.3, "jump": -0.2}
+        }
+    },
+    "event 3": {
+        "text": "A breakthrough in quantum computing allows AI companies to process data exponentially faster, revolutionizing cybersecurity.",
+        "effects": {
+            "AI & Cybersecurity": {"drift": 0.8, "volatility": 0.6, "jump": 0.7},
+            "Semiconductors": {"drift": 0.4, "volatility": 0.5, "jump": 0.4},
+            "Banks & Financial Services": {"drift": -0.2, "volatility": 0.3, "jump": -0.1}
+        }
+    },
+    "event 4": {
+        "text": "A cyberattack on major banks exposes millions of customers' financial data, causing widespread panic.",
+        "effects": {
+            "Banks & Financial Services": {"drift": -0.5, "volatility": 0.7, "jump": -0.6},
+            "AI & Cybersecurity": {"drift": 0.4, "volatility": 0.6, "jump": 0.5},
+            "Consumer Goods & Retail": {"drift": -0.2, "volatility": 0.4, "jump": -0.3}
+        }
+    },
+    "event 5": {
+        "text": "A new strain of a deadly virus emerges, increasing demand for pharmaceutical solutions and causing global supply chain disruptions.",
+        "effects": {
+            "Pharmaceuticals & Biotechnology": {"drift": 0.7, "volatility": 0.6, "jump": 0.6},
+            "Shipping & Logistics": {"drift": -0.4, "volatility": 0.5, "jump": -0.4},
+            "Consumer Goods & Retail": {"drift": -0.2, "volatility": 0.4, "jump": -0.3}
+        }
+    },
+    "event 6": {
+        "text": "The government announces massive subsidies for electric vehicles and renewable energy, sparking investment in green technology.",
+        "effects": {
+            "Renewable Energy": {"drift": 0.7, "volatility": 0.5, "jump": 0.6},
+            "Oil & Gas": {"drift": -0.6, "volatility": 0.6, "jump": -0.5},
+            "Industrial Manufacturing": {"drift": 0.3, "volatility": 0.4, "jump": 0.2}
+        }
+    },
+    "event 7": {
+        "text": "A major international conflict erupts, leading to increased defense spending and disruptions in global trade.",
+        "effects": {
+            "Defense & Aerospace": {"drift": 0.8, "volatility": 0.7, "jump": 0.7},
+            "Shipping & Logistics": {"drift": -0.5, "volatility": 0.6, "jump": -0.5},
+            "Consumer Goods & Retail": {"drift": -0.3, "volatility": 0.5, "jump": -0.4}
+        }
+    },
+    "event 8": {
+        "text": "A record-breaking hurricane devastates coastal cities, causing property damage and disrupting supply chains.",
+        "effects": {
+            "Real Estate & REITs": {"drift": -0.6, "volatility": 0.6, "jump": -0.6},
+            "Shipping & Logistics": {"drift": -0.4, "volatility": 0.5, "jump": -0.4},
+            "Renewable Energy": {"drift": 0.2, "volatility": 0.3, "jump": 0.1}
+        }
+    },
+    "event 9": {
+        "text": "A revolutionary semiconductor design is unveiled, significantly boosting processing power while reducing costs.",
+        "effects": {
+            "Semiconductors": {"drift": 0.7, "volatility": 0.6, "jump": 0.6},
+            "AI & Cybersecurity": {"drift": 0.5, "volatility": 0.5, "jump": 0.5},
+            "Industrial Manufacturing": {"drift": 0.1, "volatility": 0.3, "jump": 0.1}
+        }
+    },
+    "event 10": {
+        "text": "Consumer confidence surges as unemployment hits record lows, leading to a boom in retail spending.",
+        "effects": {
+            "Consumer Goods & Retail": {"drift": 0.6, "volatility": 0.5, "jump": 0.5},
+            "Real Estate & REITs": {"drift": 0.4, "volatility": 0.4, "jump": 0.4},
+            "Banks & Financial Services": {"drift": 0.3, "volatility": 0.3, "jump": 0.2}
+        }
+    },
+    "event 11": {
+        "text": "A major agricultural breakthrough allows crops to grow twice as fast with half the water, revolutionizing food production.",
+        "effects": {
+            "Agriculture & AgTech": {"drift": 0.8, "volatility": 0.6, "jump": 0.5},
+            "Consumer Goods & Retail": {"drift": 0.4, "volatility": 0.4, "jump": 0.3},
+            "Mining & Precious Metals": {"drift": -0.1, "volatility": 0.2, "jump": -0.1}
+        }
+    },
+    "event 12": {
+        "text": "An AI-powered logistics system increases efficiency in global trade, lowering costs across multiple industries.",
+        "effects": {
+            "Shipping & Logistics": {"drift": 0.7, "volatility": 0.5, "jump": 0.4},
+            "AI & Cybersecurity": {"drift": 0.5, "volatility": 0.5, "jump": 0.3},
+            "Consumer Goods & Retail": {"drift": 0.2, "volatility": 0.3, "jump": 0.2}
+        }
+    },
+    "event 13": {
+        "text": "A famous tech entrepreneur unveils a new AI-driven investment platform, disrupting traditional banking and investing.",
+        "effects": {
+            "AI & Cybersecurity": {"drift": 0.6, "volatility": 0.5, "jump": 0.4},
+            "Banks & Financial Services": {"drift": -0.5, "volatility": 0.6, "jump": -0.3},
+            "Semiconductors": {"drift": 0.3, "volatility": 0.4, "jump": 0.2}
+        }
+    },
+    "event 14": {
+        "text": "Gold prices soar as investors flock to safe-haven assets amid global uncertainty.",
+        "effects": {
+            "Mining & Precious Metals": {"drift": 0.7, "volatility": 0.6, "jump": 0.5},
+            "Banks & Financial Services": {"drift": -0.2, "volatility": 0.3, "jump": -0.1},
+            "Consumer Goods & Retail": {"drift": -0.1, "volatility": 0.2, "jump": -0.05}
+        }
+    },
+    "event 15": {
+        "text": "A major social media company collapses due to privacy scandals, leading to scrutiny of digital ad markets.",
+        "effects": {
+            "Media & Entertainment": {"drift": -0.6, "volatility": 0.6, "jump": -0.4},
+            "AI & Cybersecurity": {"drift": 0.4, "volatility": 0.5, "jump": 0.3},
+            "Telecommunications & 5G": {"drift": -0.3, "volatility": 0.4, "jump": -0.2}
+        }
+    },
+    "event 16": {
+        "text": "A space mining company successfully extracts rare minerals from an asteroid, disrupting the mining industry.",
+        "effects": {
+            "Mining & Precious Metals": {"drift": -0.6, "volatility": 0.5, "jump": -0.4},
+            "Industrial Manufacturing": {"drift": 0.4, "volatility": 0.3, "jump": 0.3},
+            "Defense & Aerospace": {"drift": 0.3, "volatility": 0.2, "jump": 0.2}
+        }
+    },
+    "event 17": {
+        "text": "A global labor strike cripples manufacturing and shipping, causing severe supply chain delays.",
+        "effects": {
+            "Industrial Manufacturing": {"drift": -0.5, "volatility": 0.6, "jump": -0.4},
+            "Shipping & Logistics": {"drift": -0.4, "volatility": 0.5, "jump": -0.3},
+            "Consumer Goods & Retail": {"drift": -0.3, "volatility": 0.4, "jump": -0.2}
+        }
+    },
+    "event 18": {
+        "text": "A major cyberattack shuts down telecommunications networks worldwide, causing chaos.",
+        "effects": {
+            "Telecommunications & 5G": {"drift": -0.7, "volatility": 0.8, "jump": -0.6},
+            "AI & Cybersecurity": {"drift": 0.6, "volatility": 0.7, "jump": 0.5},
+            "Banks & Financial Services": {"drift": -0.3, "volatility": 0.4, "jump": -0.2}
+        }
+    },
+    "event 19": {
+        "text": "New legislation forces pharmaceutical companies to lower drug prices, impacting revenues.",
+        "effects": {
+            "Pharmaceuticals & Biotechnology": {"drift": -0.5, "volatility": 0.6, "jump": -0.4},
+            "Consumer Goods & Retail": {"drift": 0.3, "volatility": 0.3, "jump": 0.2},
+            "Banks & Financial Services": {"drift": -0.2, "volatility": 0.3, "jump": -0.1}
+        }
+    },
+    "event 20": {
+        "text": "An AI-generated blockbuster film dominates the box office, revolutionizing entertainment.",
+        "effects": {
+            "Media & Entertainment": {"drift": 0.7, "volatility": 0.5, "jump": 0.5},
+            "AI & Cybersecurity": {"drift": 0.4, "volatility": 0.3, "jump": 0.3},
+            "Semiconductors": {"drift": 0.2, "volatility": 0.2, "jump": 0.1}
+        }
+    },
+    "event 21": {
+        "text": "A revolutionary battery technology extends electric vehicle range by 500%, disrupting the automotive industry.",
+        "effects": {
+            "Renewable Energy": {"drift": 0.7, "volatility": 0.6, "jump": 0.5},
+            "Oil & Gas": {"drift": -0.6, "volatility": 0.5, "jump": -0.4},
+            "Industrial Manufacturing": {"drift": 0.5, "volatility": 0.4, "jump": 0.3}
+        }
+    },
+    "event 22": {
+        "text": "A major diplomatic breakthrough ends a long-standing geopolitical conflict, stabilizing global trade and markets.",
+        "effects": {
+            "Defense & Aerospace": {"drift": -0.5, "volatility": 0.4, "jump": -0.3},
+            "Shipping & Logistics": {"drift": 0.6, "volatility": 0.4, "jump": 0.4},
+            "Consumer Goods & Retail": {"drift": 0.5, "volatility": 0.3, "jump": 0.2}
+        }
+    },
+    "event 23": {
+        "text": "A new social media platform powered by AI gains mass adoption, disrupting existing digital ecosystems.",
+        "effects": {
+            "Media & Entertainment": {"drift": 0.7, "volatility": 0.5, "jump": 0.4},
+            "Telecommunications & 5G": {"drift": 0.5, "volatility": 0.3, "jump": 0.3},
+            "AI & Cybersecurity": {"drift": 0.4, "volatility": 0.3, "jump": 0.2}
+        }
+    },
+    "event 24": {
+        "text": "A breakthrough in fusion energy leads to the first operational commercial fusion power plant, revolutionizing energy production.",
+        "effects": {
+            "Renewable Energy": {"drift": 0.9, "volatility": 0.7, "jump": 0.6},
+            "Oil & Gas": {"drift": -0.7, "volatility": 0.6, "jump": -0.5},
+            "Industrial Manufacturing": {"drift": 0.6, "volatility": 0.4, "jump": 0.3}
+        }
+    },
+    "event 25": {
+        "text": "A global food shortage emerges due to extreme weather events, leading to soaring prices and economic strain.",
+        "effects": {
+            "Agriculture & AgTech": {"drift": 0.8, "volatility": 0.8, "jump": 0.6},
+            "Consumer Goods & Retail": {"drift": -0.4, "volatility": 0.5, "jump": -0.3},
+            "Pharmaceuticals & Biotechnology": {"drift": 0.3, "volatility": 0.3, "jump": 0.2}
+        }
+    },
+    "event 26": {
+        "text": "A robotic automation breakthrough replaces human labor in key industries, leading to mass layoffs and economic shifts.",
+        "effects": {
+            "Industrial Manufacturing": {"drift": 0.7, "volatility": 0.6, "jump": 0.5},
+            "Consumer Goods & Retail": {"drift": -0.5, "volatility": 0.5, "jump": -0.4},
+            "AI & Cybersecurity": {"drift": 0.6, "volatility": 0.4, "jump": 0.3}
+        }
+    },
+    "event 27": {
+        "text": "A major earthquake strikes a major economic hub, causing widespread infrastructure damage and economic turmoil.",
+        "effects": {
+            "Real Estate & REITs": {"drift": -0.7, "volatility": 0.7, "jump": -0.6},
+            "Shipping & Logistics": {"drift": -0.5, "volatility": 0.5, "jump": -0.4},
+            "Industrial Manufacturing": {"drift": 0.6, "volatility": 0.6, "jump": 0.4}
+        }
+    },
+    "event 28": {
+        "text": "A breakthrough in genetic engineering allows for the reversal of aging in humans, creating a new trillion-dollar industry.",
+        "effects": {
+            "Pharmaceuticals & Biotechnology": {"drift": 0.9, "volatility": 0.6, "jump": 0.6},
+            "Consumer Goods & Retail": {"drift": 0.5, "volatility": 0.4, "jump": 0.3},
+            "Banks & Financial Services": {"drift": 0.3, "volatility": 0.3, "jump": 0.2}
+        }
+    },
+    "event 29": {
+        "text": "A global power grid hack causes blackouts in multiple countries, crippling industries and financial systems.",
+        "effects": {
+            "AI & Cybersecurity": {"drift": 0.8, "volatility": 0.8, "jump": 0.7},
+            "Banks & Financial Services": {"drift": -0.6, "volatility": 0.6, "jump": -0.5},
+            "Industrial Manufacturing": {"drift": -0.5, "volatility": 0.5, "jump": -0.4}
+        }
+    },
+    "event 30": {
+        "text": "A large-scale space tourism venture successfully sends civilians to orbit, marking a new era of commercial space travel.",
+        "effects": {
+            "Defense & Aerospace": {"drift": 0.9, "volatility": 0.6, "jump": 0.6},
+            "Media & Entertainment": {"drift": 0.6, "volatility": 0.4, "jump": 0.4},
+            "Consumer Goods & Retail": {"drift": 0.5, "volatility": 0.3, "jump": 0.3}
+        }
+    }
+}

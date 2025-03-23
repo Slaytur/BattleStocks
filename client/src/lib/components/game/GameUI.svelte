@@ -1,6 +1,7 @@
 <script lang='ts'>
   import Stocks from "./Stocks.svelte"
   import { Chart } from "chart.js/auto";
+  import events from "../../../../../shared/data/events.json";
 
   // variables for ben to use for the graphs
   let var1;
@@ -9,6 +10,14 @@
 
   let events: string;
   let news: string;
+
+  let event1;
+  let event3;
+  let event2;
+  let payload;
+    
+  function getEvents() {
+  }
 
   function draw() {
     const data = [

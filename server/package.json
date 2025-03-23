@@ -6,6 +6,7 @@
     "dev": "bun --bun run --hot src/app.ts"
   },
   "dependencies": {
+    "chart.js": "^4.4.8",
     "hono": "^4.7.5"
   }
 }

@@ -27,8 +27,8 @@ export async function getUserFromGoogleId (googleId: string): Promise<UserDoc | 
 };
 
 export async function createUserFromCreds (email: string, password: string): Promise<UserDoc | null> {
-    const hash = await (new Argon2id()).hash(password);
-    const user: Partial<UserDoc> = {
+    const hash = await (new Argon2id().hash(password));
+    const user: typeof User.$inferInsert = {
         email,
         password: hash
     };
@@ -37,8 +37,13 @@ export async function createUserFromCreds (email: string, password: string): Pro
 
     // console.log(`beuh`, user);
 
-    db.insert(User).values(user);
-    return user as UserDoc;
+    try {
+        console.log(db.insert(User).values(user));
+    } catch (err) {
+        console.log(err);
+    }
+
+    return user;
 }
 
 export async function loginUserFromCreds (email: string, password: string): Promise<boolean> {

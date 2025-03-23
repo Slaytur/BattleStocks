@@ -24,7 +24,7 @@ app.use(
     })
 );
 
-app.get("/game", upgradeWebSocket(c => ({
+app.get("/api/game", upgradeWebSocket(c => ({
     onOpen (e, ws) {
         core.logger.info("WebSocket", "Player connected.");
     },

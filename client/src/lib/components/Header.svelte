@@ -10,8 +10,8 @@
 </script>
 
 <svelte:window bind:scrollY={scrollY} />
-<header class="{page.url.pathname === "/" ? "tw:!fixed tw:z-40" : ""} tw:w-full tw:bg-background">
-    <nav bind:this={nav} class="navbar navbar-dark navbar-expand-lg" class:scrolled={scrollY !== nav?.offsetTop}>
+<header class="{page.url.pathname === "/" ? "tw:!fixed tw:z-40 " : ""}tw:w-full tw:bg-background">
+    <nav bind:this={nav} class="navbar navbar-expand-lg" class:scrolled={scrollY !== nav?.offsetTop}>
         <div class="container-fluid tw:lg:!px-20 tw:px-2 tw:py-1">
             <a class="navbar-brand tw:font-roboto tw:!text-[#188654] tw:font-bold tw:!text-2xl tw:tracking-wide" href="/">
                 <!-- <img src={Logo} alt="Voyago logo" width="30" height="24" class="d-inline-block align-text-top hover:tw:rotate-90 tw:transition-all"> -->
@@ -22,9 +22,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar-nav">
                 <div class="navbar-nav me-auto tw:font-medium">
-                    <a class="nav-link tw:!text-black" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
-                    <a class="nav-link tw:!text-black" class:active={page.url.pathname === "/servers"} href="/servers">Server Browser</a>
-                    <a class="nav-link tw:!text-black" class:active={page.url.pathname === "/about"} href="/about">About</a>
+                    <a class="nav-link" class:active={page.url.pathname === "/about"} href="/about">About</a>
+                    <a class="nav-link" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
+                    <a class="nav-link" class:active={page.url.pathname === "/game"} href="/game">Play</a>
                 </div>
                 <div class="navbar-nav ms-auto tw:font-medium">
                     {#if false}

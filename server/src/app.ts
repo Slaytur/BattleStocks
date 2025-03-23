@@ -27,6 +27,10 @@ app.use(
 app.get("/api/game", upgradeWebSocket(c => ({
     onOpen (e, ws) {
         core.logger.info("WebSocket", "Player connected.");
+        ws.send(JSON.stringify({
+            type: WSMessageType.GamesList,
+            games: [{ name: "game", gameId: 123, phases: 5 }]
+        }));
     },
 
     // @ts-expect-error We know that this is a Bun WebSocket.
@@ -37,7 +41,7 @@ app.get("/api/game", upgradeWebSocket(c => ({
             if (typeof data.name !== "string") return;
 
             const gameId = core.gameAllocator.getNextId();
-            const game = new Game(gameId);
+            const game = new Game(gameId, data.name, data.phases);
 
             if (game.state !== GameState.Lobby) return; // todo: error handling
 
@@ -47,6 +51,7 @@ app.get("/api/game", upgradeWebSocket(c => ({
             if (ws.raw) ws.raw.data.id = player.id;
 
             game.addPlayer(player);
+            core.games.set(gameId, game);
         } else if (data.type === WSMessageType.Join) {
             if (typeof data.code !== "string" || typeof data.name !== "string") return;
 

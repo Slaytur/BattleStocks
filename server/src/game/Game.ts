@@ -29,7 +29,7 @@ export class Game {
 
     eventOptions: number[] = [];
 
-    constructor (public id: number) {}
+    constructor (public id: number, public name: string, public phases: number) {}
 
     addPlayer (player: Player) {
         const playerId = this.playerAllocator.getNextId();

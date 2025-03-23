@@ -1,12 +1,14 @@
 <script lang="ts">
+    import { applyAction } from "$app/forms";
     import type { Server } from "../../../../../shared/typings/types";
+    import { Application } from "./app.svelte";
 
-    let servers: Server[] = $state([
-        { name: "Charlie's Server", phases: 10, gameId: "123" },
-        { name: "Benjamin's Server", phases: 5, gameId: "213" },
-        { name: "Ahan's Server", phases: 2, gameId: "132" },
-        { name: "Quentin's Server", phases: 15, gameId: "231" }
-    ]);
+    export const core = $state({
+        app: new Application()
+    });
+
+
+    let servers: Server[] = core.app.servers;
 </script>
 
 <div class="server-browser card card-body tw:w-1/2 tw:mx-auto tw:mt-5">

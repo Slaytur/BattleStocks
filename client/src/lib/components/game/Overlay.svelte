@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
     let ev1 = "event 1";
     let ev2 = "event 2";
     let ev3 = "event 3";
@@ -15,4 +15,3 @@
         {ev3}
     </button>
 </section>
-  

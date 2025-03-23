@@ -1,4 +1,5 @@
 import {
+    GameState,
     WSClientMessageTypes,
     WSServerMessageTypes,
     type GameSnap,
@@ -34,16 +35,20 @@ export class Application {
     serverPhases = $state(4);
 
     checkedForServers = $state(false);
+    accessingServer = $state(false);
 
-    game!: GameSnap;
+    game: GameSnap | null = $state(null);
+    playerId = $state(-1);
 
     connect () {
         this.ws = new WebSocket(`ws://localhost:8080/api/game`);
 
         this.ws.onopen = () => {
-            this.ws?.send(JSON.stringify({
-                type: WSClientMessageTypes.Handshake
-            }));
+            setTimeout(() => {
+                this.ws?.send(JSON.stringify({
+                    type: WSClientMessageTypes.Handshake
+                }));
+            }, 1e3);
         };
 
         this.ws.onmessage = (event: MessageEvent<string>) => {
@@ -56,6 +61,7 @@ export class Application {
                         break;
                     case WSServerMessageTypes.Snapshot:
                         this.selectionPhase = false;
+                        this.unpack(data.data);
                         break;
                     case WSServerMessageTypes.EventSelection:
                         this.currentEventOptions = data.options;
@@ -65,6 +71,8 @@ export class Application {
                         this.winner = data.winner;
                         break;
                     case WSServerMessageTypes.Connect:
+                        this.state = AppState.Lobby;
+                        this.playerId = data.id;
                         this.unpack(data.game);
                         break;
                     default:
@@ -90,6 +98,8 @@ export class Application {
             serverPhases: this.serverPhases,
             serverPIN: this.serverPIN
         } as WSClientMessages));
+
+        this.accessingServer = true;
     }
 
     joinServer (code: number) {
@@ -102,8 +112,44 @@ export class Application {
         } as WSClientMessages));
     }
 
+    goBack () {
+        this.ws?.close();
+        
+        this.accessingServer = false;
+        this.checkedForServers = false;
+
+        this.state = AppState.ServerBrowser;
+
+        this.connect();
+    }
+
+
+    startGame () {
+        this.ws?.send(JSON.stringify({
+            type: WSClientMessageTypes.Start
+        } as WSClientMessages));
+    }
+
+    updateStock (name: string, amount: number) {
+        this.ws?.send(JSON.stringify({
+            type: WSClientMessageTypes.UpdateStocks,
+            name,
+            amount
+        } as WSClientMessages));
+    }
+
     unpack (snap: GameSnap) {
         this.game = snap;
+        this.state = 
+            this.game.state === GameState.Lobby
+                ? AppState.Lobby
+                : this.game.state === GameState.BuyPhase || this.game.state === GameState.EventSelectionPhase
+                ? AppState.Playing
+                : this.game.state === GameState.GameOver
+                    ? AppState.GameOver
+                    : this.game.state === GameState.Queuing
+                        ? AppState.Queuing
+                        : this.state;
     }
 }
 

@@ -23,11 +23,11 @@
             We stand for the fusion of financial education, strategic gameplay, and risk-free experimentation.
             It’s built on the belief that learning how markets work shouldn’t be intimidating or costly — it should be engaging, competitive, and accessible to everyone.
             At its core, BattleStocks stands for:
-            🎯 Education Through Experience: Learn real trading concepts by doing, not just reading.
-            🛡️ Risk-Free Exploration: Make bold moves and test strategies with zero financial risk.
-            ⚔️ Healthy Competition: Challenge others in a fair, skill-based environment.
-            📊 Real Data, Real Decisions: Use live market data to make informed trades and develop market intuition.
-            🎮 Gamified Learning: Turn complex market dynamics into fun, interactive battles.
+            Education Through Experience: Learn real trading concepts by doing, not just reading.
+            Risk-Free Exploration: Make bold moves and test strategies with zero financial risk.
+            Healthy Competition: Challenge others in a fair, skill-based environment.
+            Real Data, Real Decisions: Use live market data to make informed trades and develop market intuition.
+            Gamified Learning: Turn complex market dynamics into fun, interactive battles.
             BattleStocks isn’t just a game — it’s a movement to empower a new generation of financially literate, strategy-minded thinkers.
         </p>
 

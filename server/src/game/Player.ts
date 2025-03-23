@@ -85,11 +85,13 @@ export class Player {
 
     snap (): PlayerSnap {
         return {
+            id: this.id,
             name: this.name,
             state: this.state,
             rank: this.rank,
             balance: this.balance,
-            db: this.db
+            db: this.db,
+            stocks: [...this.stocks.entries()]
         };
     }
 }

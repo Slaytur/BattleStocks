@@ -7,6 +7,7 @@
         "@oslojs/crypto": "^1.0.1",
         "@oslojs/encoding": "^1.1.0",
         "arctic": "^3.5.0",
+        "chart.js": "^4.4.8",
         "gsap": "^3.12.7",
         "svelte-typewriter": "^3.2.3",
       },

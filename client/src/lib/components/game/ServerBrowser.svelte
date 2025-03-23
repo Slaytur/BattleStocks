@@ -4,12 +4,9 @@
 
     import { AppState } from "./app.svelte";
     import { core } from "./core.svelte";
-
-    let servers: Server[] = core.app.servers;
 </script>
 
 <div class="server-browser card card-body tw:w-1/2 tw:mx-auto tw:mt-5">
-    <!-- Servers: {servers.length} -->
     {#if core.app.state === AppState.Initial}
         <h2 class="tw:!my-5 tw:text-center">Setup</h2>
         <div class="tw:mb-4 tw:text-center">
@@ -26,7 +23,7 @@
                 <div class="col-sm-2">Phases</div>
                 <div class="col-sm-2"></div>
             </div>
-            {#each servers as server}
+            {#each core.app.servers as server}
                 <div class="row tw:!mx-1">
                     <div class="col">{server.name}</div>
                     <div class="col-sm-2">0</div>
@@ -40,7 +37,13 @@
             {/each}
             <hr>
         </div>
-        <button class="btn btn-success btn-block tw:w-full" disabled={core.app.playerName === "" || !core.app.checkedForServers} onclick={(() => core.app.state = AppState.Creating)}>Create Server</button>
+        <button class="btn btn-success btn-block tw:w-full" disabled={core.app.playerName === "" || !core.app.checkedForServers} onclick={(() => core.app.state = AppState.Creating)}>
+            {#if !core.app.checkedForServers}
+                <div class="ui-spinner"></div>
+            {:else}
+                Create Server
+            {/if}
+        </button>
     {:else}
         <div class="d-grid gap-2">
             <div class="row">
@@ -65,17 +68,24 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-success btn-block tw:w-full" disabled={core.app.serverName === "" || core.app.serverPIN.length < 4} onclick={(() => core.app.createServer())}>Confirm</button>
+                    <button class="btn btn-success btn-block tw:w-full" disabled={core.app.serverName === "" || core.app.serverPIN.length < 4 || core.app.accessingServer} onclick={(() => { core.app.createServer(); })}>
+                        {#if core.app.accessingServer}
+                            <div class="ui-spinner"></div>
+                        {:else}
+                            Confirm
+                        {/if}
+                    </button>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-secondary btn-block tw:w-full" disabled={core.app.playerName === ""} onclick={(() => core.app.state = AppState.ServerBrowser)}>Go Back</button>
+                    <button class="btn btn-secondary btn-block tw:w-full" disabled={core.app.playerName === ""} onclick={(() => { core.app.goBack(); })}>Go Back</button>
                 </div>
             </div>
         </div>
     {/if}
 </div>
+<!-- ss btn-block tw:w-full onclick={()}View Servers</div> -->
 
 <style lang="scss">
 

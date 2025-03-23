@@ -24,6 +24,8 @@ app.use(
     })
 );
 
+const stuff = new Map();
+
 app.get("/api/game", upgradeWebSocket(c => ({
     onOpen (e, ws) {
         core.logger.info("WebSocket", "Player connected.");
@@ -34,6 +36,7 @@ app.get("/api/game", upgradeWebSocket(c => ({
         const data = JSON.parse(e.data) as WSClientMessages;
         switch (data.type) {
             case WSClientMessageTypes.Handshake: {
+                core.logger.debug("WebSocket", "Player requested handshake.");
                 ws.send(JSON.stringify({
                     type: WSServerMessageTypes.Handshake,
                     games: getServers()
@@ -57,48 +60,48 @@ app.get("/api/game", upgradeWebSocket(c => ({
                 const player = new Player(gameId, ws, data.playerName);
                 player.rank = PlayerRank.Host;
 
-                if (ws.raw) ws.raw.data.id = player.id;
+                stuff.set(ws, { playerId: player.id, gameId: game.id });
+
                 core.logger.debug("WebSocket", `Creating game #${gameId}.`);
 
                 game.addPlayer(player);
                 core.games.set(gameId, game);
-
-                ws.send(JSON.stringify({
-                    type: WSServerMessageTypes.Connect,
-                    id: player.id,
-                    game: game.snap()
-                } as WSServerMessages));
 
                 sendGameSnap(game);
                 break;
             }
 
             case WSClientMessageTypes.Start: {
-                const gameId = ws.raw?.data.id;
+                const gameId = stuff.get(ws)?.gameId;
                 const game = core.games.get(gameId!);
 
+                console.log(gameId, game);
                 if (!game) return;
+                game.start();
                 break;
             }
 
             case WSClientMessageTypes.Join: {
-                if (typeof data.code !== "string" || typeof data.name !== "string") return;
+                if (typeof data.code !== "number" || typeof data.name !== "string") return;
 
                 const game = core.games.get(data.code);
                 if (!game || game.state !== GameState.Lobby) return; // todo: error handling
 
                 const player = new Player(data.code, ws, data.name);
                 game.addPlayer(player);
+
+                stuff.set(ws, { playerId: player.id, gameId: game.id });
+
                 break;
             }
 
             case WSClientMessageTypes.UpdateStocks: {
                 if (typeof data.name !== "string" || typeof data.amount !== "string" || !ws.raw) return;
 
-                const game = core.games.get(ws.raw.data.gameId);
+                const game = core.games.get(stuff.get(ws)?.gameId);
                 if (!game) return;
 
-                const player = game.players.get(ws.raw.data.id);
+                const player = game.players.get(stuff.get(ws).id);
                 const stock = game.stocks.get(data.name);
 
                 if (!player || !stock) return;
@@ -124,6 +127,8 @@ app.get("/api/game", upgradeWebSocket(c => ({
     onClose (e, ws: WSContext<ServerWebSocket<WSData>>) {
         const game = core.games.get(ws.raw!.data.gameId);
         game?.removePlayer(ws.raw!.data.id);
+
+        core.logger.info("WebSocket", "Player disconnected.");
     }
 })));
 

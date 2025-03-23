@@ -8,8 +8,9 @@ import { randInt } from "../../../shared/src/utils/math";
 
 import events from "../../../shared/data/events.json";
 
-import { Server, WSServerMessageTypes } from "../../../shared/typings/types";
+import { Server, WSServerMessageTypes, type WSServerMessages } from "../../../shared/typings/types";
 
+// Bun complains when trying to import from shared, have duplicated it here for that reason.
 export enum GameState {
     Lobby,
     Queuing,
@@ -34,6 +35,13 @@ export class Game {
     eventOptions: number[] = [];
 
     constructor (public id: number, public name: string, public phases: number) {}
+
+    start () {
+        this.state = GameState.BuyPhase;
+        this.sendSnapshots();
+        this.timer = 90;
+        setInterval(() => { this.logic(); }, 1e3);
+    }
 
     /**
      * Runs every time that a websocket sends data.
@@ -66,10 +74,10 @@ export class Game {
                 if (this.timer === 0) {
                     this.currentPhase++;
                     this.currentEvent = this.eventOptions.sort()[0];
-                    if (this.currentPhase === this.phases)
-                        this.state = GameState.GameOver;
 
+                    if (this.currentPhase === this.phases) this.state = GameState.GameOver;
                     else {
+                        this.simulateStocks();
                         this.state = GameState.BuyPhase;
                         this.timer = 90;
                         this.sendSnapshots();
@@ -83,6 +91,14 @@ export class Game {
                 this.destroy();
                 break;
             }
+        }
+    }
+
+    simulateStocks () {
+        const effects = events[this.currentEvent].effects as Record<string, any>;
+        for (const stock of [...this.stocks.values()]) {
+            if (effects[stock.category]) stock.apply(effects[stock.category].drift, effects[stock.category].volatility, effects[stock.category].jump);
+            else stock.apply(0, 0, 0);
         }
     }
 
@@ -133,6 +149,12 @@ export class Game {
         player.id = playerId;
 
         this.players.set(playerId, player);
+
+        player.ws.send(JSON.stringify({
+            type: WSServerMessageTypes.Connect,
+            id: player.id,
+            game: this.snap()
+        } as WSServerMessages));
     }
 
     removePlayer (id: number) {

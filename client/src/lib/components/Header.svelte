@@ -23,8 +23,8 @@
             <div class="collapse navbar-collapse" id="navbar-nav">
                 <div class="navbar-nav me-auto tw:font-medium">
                     <a class="nav-link {page.url.pathname === "/about" ? "tw:!text-white" : "tw:!text-[#188654]"}" class:active={page.url.pathname === "/about"} href="/about">About</a>
-                    <a class="nav-link {page.url.pathname === "/dashboard" ? "tw:!text-white" : "tw:!text-[#188654]"}" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
-                    <a class="nav-link {page.url.pathname === "/game" ? "tw:!text-white" : "tw:!text-[#188654]"}" class:active={page.url.pathname === "/game"} href="/game">Play</a>
+                    <a class="nav-link {page.url.pathname === "/about" ? "tw:!text-white" : "tw:!text-[#188654]"}" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
+                    <a class="nav-link {page.url.pathname === "/about" ? "tw:!text-white" : "tw:!text-[#188654]"}" class:active={page.url.pathname === "/game"} href="/game">Play</a>
                 </div>
                 <div class="navbar-nav ms-auto tw:font-medium">
                     {#if false}

@@ -10,10 +10,10 @@
 </script>
 
 <svelte:window bind:scrollY={scrollY} />
-<header class="{page.url.pathname === "/" ? "tw:!fixed tw:z-40 " : ""}tw:w-full tw:bg-background">
+<header class="{page.url.pathname === "/" ? "tw:!fixed tw:z-40 " : ""} tw:w-full {page.url.pathname === "/about" ? "tw:bg-[#188654]" : "tw:bg-background"}">
     <nav bind:this={nav} class="navbar navbar-expand-lg" class:scrolled={scrollY !== nav?.offsetTop}>
         <div class="container-fluid tw:lg:!px-20 tw:px-2 tw:py-1">
-            <a class="navbar-brand tw:font-roboto tw:!text-[#188654] tw:font-bold tw:!text-2xl tw:tracking-wide" href="/">
+            <a class="navbar-brand tw:font-roboto {page.url.pathname === "/about" ? "tw:!text-white" : "tw:!text-[#188654]"} tw:font-bold tw:!text-2xl tw:tracking-wide" href="/">
                 <!-- <img src={Logo} alt="Voyago logo" width="30" height="24" class="d-inline-block align-text-top hover:tw:rotate-90 tw:transition-all"> -->
                 BattleStocks
             </a>
@@ -22,9 +22,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar-nav">
                 <div class="navbar-nav me-auto tw:font-medium">
-                    <a class="nav-link" class:active={page.url.pathname === "/about"} href="/about">About</a>
-                    <a class="nav-link" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
-                    <a class="nav-link" class:active={page.url.pathname === "/game"} href="/game">Play</a>
+                    <a class="nav-link {page.url.pathname === "/about" ? "tw:!text-white" : "tw:!text-[#188654]"}" class:active={page.url.pathname === "/about"} href="/about">About</a>
+                    <a class="nav-link {page.url.pathname === "/about" ? "tw:!text-white" : "tw:!text-[#188654]"}" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
+                    <a class="nav-link {page.url.pathname === "/about" ? "tw:!text-white" : "tw:!text-[#188654]"}" class:active={page.url.pathname === "/game"} href="/game">Play</a>
                 </div>
                 <div class="navbar-nav ms-auto tw:font-medium">
                     {#if false}
@@ -43,8 +43,8 @@
                             </ul>
                         </div>
                     {:else}
-                        <a href="/login" class="btn btn-success  tw:!border-none tw:me-2">Sign In</a>
-                        <a href="/signup" class="btn btn-success  tw:!border-none">Sign Up</a>
+                        <a href="/login" class="btn btn-success  tw:!border-none tw:me-2 {page.url.pathname === "/about" ? "tw:!bg-background" : "tw:bg-[#188654]"} {page.url.pathname === "/about" ? "tw:!text-[#188654]" : "tw:!text-white"}">Sign In</a>
+                        <a href="/signup" class="btn btn-success  tw:!border-none {page.url.pathname === "/about" ? "tw:!bg-background" : "tw:bg-[#188654]"} {page.url.pathname === "/about" ? "tw:!text-[#188654]" : "tw:!text-white"}">Sign Up</a>
                     {/if}
                 </div>
             </div>

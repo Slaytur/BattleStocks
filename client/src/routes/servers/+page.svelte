@@ -1,15 +1,21 @@
 <script lang="ts">
     import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
     import { faDiscord, faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+    import type { Server } from "../../../../shared/typing/types";
 
     import gsap from "gsap";
     import { onMount } from "svelte";
+    import { redirect } from "@sveltejs/kit";
 
     let main: HTMLElement;
 
     let query: string = $state("");
 
-    let servers = ["server1", "server2", "server3"];
+    let servers: Server[] = [
+        {name: "Charlie's Server", phases: 10, gameId: "123"}, 
+        {name: "Benjamin's Server", phases: 5, gameId: "213"}, 
+        {name: "Ahan's Server", phases: 2, gameId: "132"}
+    ];
 
     onMount(() => {
         const ctx = gsap.context(() => {
@@ -24,7 +30,7 @@
 <main bind:this={main}>
     <h1 class="tw:!text-text tw:!my-10 tw:text-center">Server Browser</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
-        <div class="card tw:!border-secondary-dark tw:!bg-background-dark">
+        <div class="card tw:!bg-primary tw:!border-primary">
             <div class="card-body">
                 <p class="tw:flex tw:justify-end">{servers.length}/4 servers open</p>
                 <div class="tw:mb-4 tw:text-center">
@@ -32,12 +38,12 @@
                     <input type="email" bind:value={query} name="query" id="query" class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70" placeholder="Server1" />
                 </div>
                 <form action="">
-                    <div class="tw:mb-4 tw:!text-text">
-                        <ul>
+                    <div class="tw:mb-4 card tw:!text-text-white tw:!bg-white">
+                        <ul class="tw:p-4 tw:flex tw:flex-col">
                             {#each servers as server}
-                                <div class="tw:flex tw:items-center">
-                                    <li>{server}</li>
-                                    <button type="submit" class="btn btn-block tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all" disabled>
+                                <div class="tw:flex tw:justify-around tw:m-4 tw:items-center">
+                                    <li>{server.name}</li>
+                                    <button onclick={() => window.location.href = `/game/${server.gameId}`} class="btn btn-block tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
                                         <div>Join Game</div>
                                     </button>
                                 </div>

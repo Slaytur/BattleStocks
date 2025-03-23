@@ -23,11 +23,12 @@ export class Application {
         };
 
         this.ws.onmessage = (event) => {
-            console.log(event.data.type);
+            let message = JSON.parse(event.data);
+            console.log(message.type);
             try {
-                switch (event.data.type){
+                switch (message.type){
                     case WSMessageType.GamesList:
-                        this.servers = JSON.parse(event.data.games);
+                        this.servers = message.games;
                         break;
                     default:
                         break;

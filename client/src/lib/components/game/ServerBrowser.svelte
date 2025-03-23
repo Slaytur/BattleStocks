@@ -1,12 +1,7 @@
 <script lang="ts">
     import { applyAction } from "$app/forms";
     import type { Server } from "../../../../../shared/typings/types";
-    import { Application } from "./app.svelte";
-
-    export const core = $state({
-        app: new Application()
-    });
-
+    import { core } from "./core.svelte";
 
     let servers: Server[] = core.app.servers;
 </script>

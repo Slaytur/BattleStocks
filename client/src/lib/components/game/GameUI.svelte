@@ -1,11 +1,14 @@
 <script lang='ts'>
-  import "./Stocks.svelte"
+  import Stocks from "./Stocks.svelte"
   import { Chart } from "chart.js/auto";
 
   // variables for ben to use for the graphs
   let var1;
   let var2;
   let var3;
+
+  let events: string;
+  let news: string;
 
   function draw() {
     const data = [
@@ -37,8 +40,10 @@
 <section class="card tw:border-[#111211] tw:p-6 flex flex-col">
   <section class="card tw:border-[#111211] tw:p-6">
     <div class="container" id="events"></div>
-    <div><canvas class="container" id="graph" width="600" height="400" use:draw/></div>
+    <div><canvas class="container" id="graph" width="600" height="400" ></div>
     <div class="container" id="news"></div>
    </section> 
-   <section class="card tw:border-[#111211] tw:p-6"></section> 
+   <section class="card tw:border-[#111211] tw:p-6" id="stocks">
+      <Stocks></Stocks>
+   </section> 
 </section>

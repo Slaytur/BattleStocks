@@ -35,23 +35,23 @@
                 <div class="tw:flex tw:flex-col">
                     <a class="btn btn-block tw:!border-black tw:!my-1 tw:!text-black tw:hover:brightness-50 tw:duration-300 tw:!transition-all tw:!flex tw:align-middle tw:justify-center tw:items-center" href="/login/discord" class:disabled={loginBtn === 0} onclick={(() => { loginBtn = 0; })}>
                         {#if loginBtn !== 0}
-                            <FontAwesomeIcon icon={faDiscord} class="tw:me-2 tw:p-1 tw:rounded-2xl tw:!justify-self-start" />
+                            <FontAwesomeIcon icon={faDiscord} class="tw:me-2 tw:bg-black tw:text-white tw:p-1 tw:rounded-2xl tw:!justify-self-start" />
                             Sign in with Discord
                         {:else}
                             <div class="ui-spinner"></div>
                         {/if}
                     </a>
-                    <a class="btn btn-block tw:!bg-black tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all tw:!flex tw:align-middle tw:justify-center tw:items-center" href="/login/github" class:disabled={loginBtn === 1} onclick={(() => { loginBtn = 1; })}>
+                    <a class="btn btn-block tw:!border-black tw:!my-1 tw:!text-black tw:hover:brightness-50 tw:duration-300 tw:!transition-all tw:!flex tw:align-middle tw:justify-center tw:items-center" href="/login/github" class:disabled={loginBtn === 1} onclick={(() => { loginBtn = 1; })}>
                         {#if loginBtn !== 1}
-                            <FontAwesomeIcon icon={faGithub} class="tw:me-2 tw:bg-[#000000] tw:p-1 tw:rounded-2xl" />
+                            <FontAwesomeIcon icon={faGithub} class="tw:me-2 tw:bg-[#000000] tw:text-white tw:p-1 tw:rounded-2xl" />
                             Sign in with GitHub
                         {:else}
                             <div class="ui-spinner"></div>
                         {/if}
                     </a>
-                    <a class="btn btn-block tw:!bg-black tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all tw:!flex tw:align-middle tw:justify-center tw:items-center" href="/login/google" class:disabled={loginBtn === 2} onclick={(() => { loginBtn = 2; })}>
+                    <a class="btn btn-block tw:!border-black tw:!my-1 tw:!text-black tw:hover:brightness-50 tw:duration-300 tw:!transition-all tw:!flex tw:align-middle tw:justify-center tw:items-center" href="/login/google" class:disabled={loginBtn === 2} onclick={(() => { loginBtn = 2; })}>
                         {#if loginBtn !== 2}
-                            <FontAwesomeIcon icon={faGoogle} class="tw:me-2 tw:bg-[#000000] tw:p-1 tw:rounded-2xl" />
+                            <FontAwesomeIcon icon={faGoogle} class="tw:me-2 tw:bg-[#000000] tw:text-white tw:p-1 tw:rounded-2xl" />
                             Sign in with Google
                         {:else}
                             <div class="ui-spinner"></div>

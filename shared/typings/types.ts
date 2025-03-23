@@ -24,12 +24,13 @@ export enum WSServerMessageTypes {
     Handshake,
     Connect,
     EventSelection,
-    Snapshot
+    Snapshot,
+    GameOver
 }
 
 export type WSClientMessages =
     | { type: WSClientMessageTypes.Handshake }
-    | { type: WSClientMessageTypes.Create, name: string, phases: number }
+    | { type: WSClientMessageTypes.Create, playerName: string, serverName: string, serverPhases: number, serverPIN: string }
     | { type: WSClientMessageTypes.Start }
     | { type: WSClientMessageTypes.Join, name: string, code: number }
     | { type: WSClientMessageTypes.UpdateStocks, name: string, amount: number }
@@ -39,7 +40,8 @@ export type WSServerMessages =
     | { type: WSServerMessageTypes.Handshake, games: Game[] }
     | { type: WSServerMessageTypes.Connect, id: number, gameId: number }
     | { type: WSServerMessageTypes.EventSelection, options: number[] }
-    | { type: WSServerMessageTypes.Snapshot, data: any };
+    | { type: WSServerMessageTypes.Snapshot, data: any }
+    | { type: WSServerMessageTypes.GameOver, winner: string }
 
 export interface PlayerSnap {
     name: string

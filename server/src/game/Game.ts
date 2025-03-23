@@ -23,6 +23,9 @@ export class Game {
     players = new Map<number, Player>();
 
     timer = -1;
+    currentPhase = 0;
+    currentEvent = 0;
+    eventVotes = [0, 0, 0];
 
     stocks = new Map<string, Stock>();
 
@@ -53,18 +56,29 @@ export class Game {
                 if (this.timer === 0) {
                     this.state = GameState.EventSelectionPhase;
                     this.timer = 30;
+                    this.eventVotes = [0, 0, 0];
                     this.sendEventSelection();
                 }
                 break;
             }
             case GameState.EventSelectionPhase: {
                 if (this.timer === 0) {
-                    this.state = GameState.GameOver;
-                    this.timer = 0;
+                    this.currentPhase++;
+
+                    if (this.currentPhase === this.phases)
+                        this.state = GameState.GameOver;
+
+                    else {
+                        this.state = GameState.BuyPhase;
+                        this.timer = 90;
+                    }
+                    this.timer = -1;
                 }
                 break;
             }
             case GameState.GameOver: {
+                this.broadcastGameOver();
+                this.destroy();
                 break;
             }
         }
@@ -77,6 +91,30 @@ export class Game {
                 options: this.eventOptions
             }));
         }
+    }
+
+    broadcastGameOver () {
+        const playerWinner: string = this.getWinner(); 
+        for (const player of [...this.players.values()]) {
+            player.ws.send(JSON.stringify({
+                type: WSServerMessageTypes.GameOver,
+                winner: playerWinner
+            }));
+        }
+    }
+
+    getWinner () {
+        let winner = null;
+        let max = 0;
+
+        for (const player of [...this.players.values()]) {
+            if (player.getAssetValue(this) > max) {
+                max = player.getAssetValue(this);
+                winner = player;
+            }
+        }
+
+        return winner!.name;
     }
 
     addPlayer (player: Player) {

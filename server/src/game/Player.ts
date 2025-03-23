@@ -8,6 +8,7 @@ import stocks from "../../../shared/data/stocks.json";
 
 import { core } from "../core";
 import { PlayerSnap, WSData } from "../../../shared/typings/types";
+import { Game } from "./Game";
 
 export enum PlayerState {
     Joining,
@@ -26,7 +27,7 @@ export class Player {
     balance = 1e4;
     db = 0;
 
-    stocks = new Map<Stock["name"], number>();
+    stocks: Map<string, number> = new Map<Stock["name"], number>();
 
     state = PlayerState.Joining;
     rank = PlayerRank.Player;
@@ -34,6 +35,18 @@ export class Player {
     votedEvent = -1;
 
     constructor (public gameId: number, public ws: WSContext<ServerWebSocket<WSData>>, public name: string) {}
+
+    getAssetValue(game: Game){
+        let value = this.balance;
+        for (const [name, amount] of this.stocks) {
+            const stock = game.stocks.get(name);
+            if (!stock) continue;
+
+            value += stock.value * amount;
+        }
+
+        return value;
+    }
 
     buyStocks (stock: Stock, amount: number): boolean {
         const cost = stock.value * amount;

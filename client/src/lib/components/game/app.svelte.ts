@@ -1,4 +1,10 @@
-import { WSClientMessageTypes, WSServerMessageTypes, type Server, type WSServerMessages } from "../../../../../shared/typings/types";
+import {
+    WSClientMessageTypes,
+    WSServerMessageTypes,
+    type Server,
+    type WSClientMessages,
+    type WSServerMessages
+} from "../../../../../shared/typings/types";
 
 export enum AppState {
     Initial,
@@ -20,8 +26,10 @@ export class Application {
     playerName = $state("");
 
     serverName = $state("");
-    serverPIN = $state();
+    serverPIN = $state("");
     serverPhases = $state(4);
+
+    checkedForServers = $state(false);
 
     connect () {
         this.ws = new WebSocket(`ws://localhost:8080/api/game`);
@@ -38,6 +46,7 @@ export class Application {
                 switch (data.type) {
                     case WSServerMessageTypes.Handshake:
                         this.servers = data.games;
+                        this.checkedForServers = true;
                         break;
                     default:
                         break;
@@ -47,7 +56,27 @@ export class Application {
             }
         };
         
-        this.ws.onclose = () => {};
+        this.ws.onclose = () => {
+            this.ws = null;
+        };
+    }
+
+    createServer () {
+        if (!this.ws || this.ws.readyState === this.ws.CLOSED) this.connect();
+
+        console.log(`got here`);
+
+        this.ws?.send(JSON.stringify({
+            type: WSClientMessageTypes.Create,
+            playerName: this.playerName,
+            serverName: this.serverName,
+            serverPhases: this.serverPhases,
+            serverPIN: this.serverPIN
+        } as WSClientMessages));
+    }
+
+    joinServer (id: number) {
+        if (!this.ws || this.ws.readyState === this.ws.CLOSED) this.connect();
     }
 }
 

@@ -19,10 +19,6 @@
         </div>
     {:else if core.app.state === AppState.ServerBrowser}
         <h2 class="tw:!my-5 tw:text-center">Server Browser</h2>
-        <!-- <div class="tw:mb-4 tw:text-center">
-            <input type="text" name="query" id="query" class="form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70 tw:mb-2" placeholder="Server name" />
-            <hr>
-        </div> -->
         <div class="d-grid gap-2">
             <div class="row tw:font-bold tw:!mx-1">
                 <div class="col">Name</div>
@@ -36,15 +32,15 @@
                     <div class="col-sm-2">0</div>
                     <div class="col-sm-2">{server.phases}</div>
                     <div class="col-sm-2">
-                        <button onclick={() => window.location.href = `/game/${server.gameId}`} class="btn btn-block tw:!bg-secondary tw:!text-white tw:flex tw:flex-row tw:items-center">
-                            <div>Join Game</div>
+                        <button onclick={(() => core.app.joinServer(server.gameId))} class="btn btn-block tw:!bg-secondary tw:!text-white tw:flex tw:flex-row tw:items-center">
+                            Join Game
                         </button>
                     </div>
                 </div>
             {/each}
             <hr>
         </div>
-        <button class="btn btn-success btn-block tw:w-full" disabled={core.app.playerName === ""} onclick={(() => core.app.state = AppState.Creating)}>Create Server</button>
+        <button class="btn btn-success btn-block tw:w-full" disabled={core.app.playerName === "" || !core.app.checkedForServers} onclick={(() => core.app.state = AppState.Creating)}>Create Server</button>
     {:else}
         <div class="d-grid gap-2">
             <div class="row">
@@ -69,7 +65,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-success btn-block tw:w-full" disabled={core.app.playerName === ""} onclick={(() => core.app.createServer())}>Confirm</button>
+                    <button class="btn btn-success btn-block tw:w-full" disabled={core.app.serverName === "" || core.app.serverPIN.length < 4} onclick={(() => core.app.createServer())}>Confirm</button>
                 </div>
             </div>
             <div class="row">

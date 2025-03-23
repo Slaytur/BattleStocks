@@ -30,8 +30,9 @@ app.get("/api/game", upgradeWebSocket(c => ({
     },
 
     // @ts-expect-error We know that this is a Bun WebSocket.
-    onMessage (e: MessageEvent<WSClientMessages>, ws: WSContext<ServerWebSocket<WSData>>) {
-        switch (e.data.type) {
+    onMessage (e: MessageEvent<string>, ws: WSContext<ServerWebSocket<WSData>>) {
+        const data = JSON.parse(e.data) as WSClientMessages;
+        switch (data.type) {
             case WSClientMessageTypes.Handshake: {
                 ws.send(JSON.stringify({
                     type: WSServerMessageTypes.Handshake,
@@ -41,62 +42,75 @@ app.get("/api/game", upgradeWebSocket(c => ({
             }
 
             case WSClientMessageTypes.Create: {
-                if (typeof e.data.name !== "string") return;
+                if (
+                    typeof data.playerName !== "string"
+                    || typeof data.serverName !== "string"
+                    || typeof data.serverPIN !== "string"
+                    || typeof data.serverPhases !== "number"
+                ) return;
 
                 const gameId = core.gameAllocator.getNextId();
-                const game = new Game(gameId, e.data.name, e.data.phases);
+                const game = new Game(gameId, data.serverName, data.serverPhases);
 
                 if (game.state !== GameState.Lobby) return; // todo: error handling
 
-                const player = new Player(gameId, ws, e.data.name);
+                const player = new Player(gameId, ws, data.playerName);
                 player.rank = PlayerRank.Host;
 
                 if (ws.raw) ws.raw.data.id = player.id;
 
+                core.logger.debug(`Game #${gameId}`, `Creating game ${gameId}`);
+
                 game.addPlayer(player);
                 core.games.set(gameId, game);
+
+                sendGameSnap(game);
                 break;
             }
 
             case WSClientMessageTypes.Start: {
                 // somehow get the gameId
+                const gameId = ws.raw?.data.id;
+
+                const game = core.games.get(gameId!);
+                if (!game) return;
                 break;
             }
 
             case WSClientMessageTypes.Join: {
-                if (typeof e.data.code !== "string" || typeof e.data.name !== "string") return;
+                if (typeof data.code !== "string" || typeof data.name !== "string") return;
 
-                const game = core.games.get(e.data.code);
+                const game = core.games.get(data.code);
                 if (!game || game.state !== GameState.Lobby) return; // todo: error handling
 
-                const player = new Player(e.data.code, ws, e.data.name);
+                const player = new Player(data.code, ws, data.name);
                 game.addPlayer(player);
                 break;
             }
 
             case WSClientMessageTypes.UpdateStocks: {
-                if (typeof e.data.name !== "string" || typeof e.data.amount !== "string" || !ws.raw) return;
+                if (typeof data.name !== "string" || typeof data.amount !== "string" || !ws.raw) return;
 
                 const game = core.games.get(ws.raw.data.gameId);
                 if (!game) return;
 
                 const player = game.players.get(ws.raw.data.id);
-                const stock = game.stocks.get(e.data.name);
+                const stock = game.stocks.get(data.name);
 
                 if (!player || !stock) return;
 
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const success = e.data.amount > 0
-                    ? player?.buyStocks(stock, e.data.amount)
-                    : player?.sellStocks(stock, -e.data.amount);
+                const success = data.amount > 0
+                    ? player?.buyStocks(stock, data.amount)
+                    : player?.sellStocks(stock, -data.amount);
                 break;
             }
 
             case WSClientMessageTypes.ChooseEvent: {
-                if (typeof e.data.id !== "number") return;
+                if (typeof data.id !== "number") return;
 
                 const player = getPlayer(ws);
-                player?.chooseEvent(e.data.id);
+                player?.chooseEvent(data.id);
                 break;
             }
         }

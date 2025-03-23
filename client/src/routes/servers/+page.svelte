@@ -14,7 +14,8 @@
     let servers: Server[] = [
         {name: "Charlie's Server", phases: 10, gameId: "123"}, 
         {name: "Benjamin's Server", phases: 5, gameId: "213"}, 
-        {name: "Ahan's Server", phases: 2, gameId: "132"}
+        {name: "Ahan's Server", phases: 2, gameId: "132"},
+        {name: "Quentin's Server", phases: 15, gameId: "231"}
     ];
 
     onMount(() => {

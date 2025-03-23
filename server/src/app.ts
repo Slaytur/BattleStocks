@@ -27,6 +27,7 @@ app.use(
 app.get("/api/game", upgradeWebSocket(c => ({
     onOpen (e, ws) {
         core.logger.info("WebSocket", "Player connected.");
+        
         ws.send(JSON.stringify({
             type: WSMessageType.GamesList,
             games: [{ name: "game", gameId: 123, phases: 5 }]

@@ -46,13 +46,12 @@
                     <input type="number" min=2 max=10 bind:value={phases} name="phases" id="phases" class="tw:!w-[80px] tw:!mx-auto tw:!my-2 tw:text-center form-control tw:!text-text-dark tw:!placeholder-text-dark tw:!bg-background-dark tw:!border-primary-dark/70 tw:accent-emerald-600" placeholder="Server Name" />
                 </div>
 
-                <form action="?/create">
+                <form method="POST" action="?/create">
                     <div class="tw:flex tw:justify-center">
                         <button type="submit" class="btn btn-block tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
                             <div>Create Game</div>
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>

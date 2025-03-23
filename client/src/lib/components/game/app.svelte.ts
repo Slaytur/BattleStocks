@@ -17,13 +17,13 @@ export class Application {
     servers: Server[] = [];
 
     connect () {
-        this.ws = new WebSocket(`ws://${window.location.host}/api/game`);
+        this.ws = new WebSocket(`ws://localhost:8080/api/game`);
 
         this.ws.onopen = () => {
         };
 
         this.ws.onmessage = (event) => {
-            console.log(event.type);
+            console.log(event.data.type);
             try {
                 switch (event.data.type){
                     case WSMessageType.GamesList:
@@ -43,8 +43,8 @@ export class Application {
 
 window.addEventListener(`hashchange`, () => {});
 
-window.addEventListener(`beforeunload`, e => {
-    const dialogText = `Do you want to reload the game? Your progress will be lost.`;
-    e.returnValue = dialogText;
-    return dialogText;
-});
+// window.addEventListener(`beforeunload`, e => {
+//     const dialogText = `Do you want to reload the game? Your progress will be lost.`;
+//     e.returnValue = dialogText;
+//     return dialogText;
+// });

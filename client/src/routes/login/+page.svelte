@@ -58,7 +58,7 @@
                         {/if}
                     </a>
                 </div>
-                <div class="tw:w-full tw:flex tw:justify-center tw:align-middle tw:mt-2">
+                <div class="tw:w-full tw:flex tw:justify-center tw:align-middle tw:my-2">
                     <hr class="tw:flex-1 tw:!text-black" style="margin-right: 0.5rem;">
                     <span class="tw:!text-black/60">or</span>
                     <hr class="tw:flex-1 tw:!text-black" style="margin-left: 0.5rem;">

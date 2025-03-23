@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun --bun run --hot src/index.ts"
+    "dev": "bun --bun run --hot src/app.ts"
   },
   "dependencies": {
     "hono": "^4.7.5"

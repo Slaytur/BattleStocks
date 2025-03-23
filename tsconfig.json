@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "lib": ["ESNext"],
-    "module": "NodeNext",
+    "module": "ESNext",
     "target": "ESNext",
 
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Bundler",
 
     "strict": true,
     "strictNullChecks": true,

@@ -1,0 +1,197 @@
+{
+    "Banks & Financial Services": {
+        "description": "Traditional banks, investment firms, credit card companies.",
+        "stocks": [
+            "JPMorgan Chase",
+            "Goldman Sachs",
+            "Wells Fargo",
+            "Bank of America",
+            "Morgan Stanley",
+            "Citigroup",
+            "American Express",
+            "Charles Schwab"
+        ]
+    },
+    "Oil & Gas": {
+        "description": "Companies involved in exploration, drilling, refining, and distribution of oil and natural gas.",
+        "stocks": [
+            "ExxonMobil",
+            "Chevron",
+            "BP",
+            "Shell",
+            "ConocoPhillips",
+            "TotalEnergies",
+            "Schlumberger",
+            "Halliburton"
+        ]
+    },
+    "Defense & Aerospace": {
+        "description": "Military contractors, weapons manufacturers, and space-related defense tech.",
+        "stocks": [
+            "Lockheed Martin",
+            "Northrop Grumman",
+            "Boeing",
+            "Raytheon Technologies",
+            "General Dynamics",
+            "BAE Systems",
+            "L3Harris Technologies",
+            "Kratos Defense"
+        ]
+    },
+    "Pharmaceuticals & Biotechnology": {
+        "description": "Drug manufacturers, biotech firms developing new medical treatments.",
+        "stocks": [
+            "Pfizer",
+            "Moderna",
+            "Johnson & Johnson",
+            "Gilead Sciences",
+            "Amgen",
+            "Regeneron",
+            "Biogen",
+            "Vertex Pharmaceuticals"
+        ]
+    },
+    "Semiconductors": {
+        "description": "Companies producing microchips, processors, and other essential computing hardware.",
+        "stocks": [
+            "NVIDIA",
+            "Intel",
+            "AMD",
+            "TSMC",
+            "Broadcom",
+            "Qualcomm",
+            "ASML",
+            "Micron Technology"
+        ]
+    },
+    "AI & Cybersecurity": {
+        "description": "Firms specializing in artificial intelligence, machine learning, encryption, and threat detection.",
+        "stocks": [
+            "Palantir",
+            "CrowdStrike",
+            "C3.ai",
+            "SentinelOne",
+            "Darktrace",
+            "Zscaler",
+            "NVIDIA",
+            "Datadog"
+        ]
+    },
+    "Renewable Energy": {
+        "description": "Solar, wind, hydro, and battery storage technology companies.",
+        "stocks": [
+            "NextEra Energy",
+            "Tesla",
+            "First Solar",
+            "Brookfield Renewable Partners",
+            "Orsted",
+            "Enphase Energy",
+            "Vestas Wind Systems",
+            "SunPower"
+        ]
+    },
+    "Agriculture & AgTech": {
+        "description": "Farming, fertilizers, genetically modified crops, and precision agriculture technologies.",
+        "stocks": [
+            "Deere & Co.",
+            "Corteva",
+            "Bayer",
+            "Nutrien",
+            "CF Industries",
+            "Trimble",
+            "AGCO Corporation",
+            "Raven Industries"
+        ]
+    },
+    "Mining & Precious Metals": {
+        "description": "Companies extracting gold, silver, lithium, rare earth elements, etc.",
+        "stocks": [
+            "Barrick Gold",
+            "Newmont Corporation",
+            "Albemarle",
+            "Rio Tinto",
+            "BHP Group",
+            "Freeport-McMoRan",
+            "Anglo American",
+            "Sibanye Stillwater"
+        ]
+    },
+    "Consumer Goods & Retail": {
+        "description": "Major retailers, e-commerce giants, and consumer product manufacturers.",
+        "stocks": [
+            "Amazon",
+            "Walmart",
+            "Costco",
+            "Target",
+            "Procter & Gamble",
+            "Nike",
+            "Coca-Cola",
+            "Unilever"
+        ]
+    },
+    "Real Estate & REITs": {
+        "description": "Companies owning or managing properties, including commercial and residential real estate.",
+        "stocks": [
+            "Simon Property Group",
+            "Realty Income",
+            "Prologis",
+            "Equinix",
+            "Vornado Realty",
+            "Brookfield Asset Management",
+            "AvalonBay Communities",
+            "Invitation Homes"
+        ]
+    },
+    "Shipping & Logistics": {
+        "description": "Global transportation, freight carriers, and supply chain management firms.",
+        "stocks": [
+            "FedEx",
+            "UPS",
+            "Maersk",
+            "Union Pacific",
+            "CSX Corporation",
+            "Canadian National Railway",
+            "DHL Group",
+            "XPO Logistics"
+        ]
+    },
+    "Media & Entertainment": {
+        "description": "Streaming services, gaming companies, music, and content production firms.",
+        "stocks": [
+            "Netflix",
+            "Disney",
+            "Warner Bros. Discovery",
+            "Spotify",
+            "Electronic Arts",
+            "Take-Two Interactive",
+            "Sony",
+            "Paramount Global"
+        ]
+    },
+    "Telecommunications & 5G": {
+        "description": "Wireless carriers, broadband providers, and companies developing 5G infrastructure.",
+        "stocks": [
+            "Verizon",
+            "AT&T",
+            "T-Mobile",
+            "Qualcomm",
+            "Ericsson",
+            "Nokia",
+            "American Tower",
+            "Crown Castle"
+        ]
+    },
+    "Industrial Manufacturing": {
+        "description": "Heavy machinery, construction equipment, and industrial automation firms.",
+        "stocks": [
+            "General Electric",
+            "Siemens",
+            "Honeywell",
+            "Caterpillar",
+            "ABB Ltd.",
+            "Emerson Electric",
+            "Rockwell Automation",
+            "3M"
+        ]
+    }
+}

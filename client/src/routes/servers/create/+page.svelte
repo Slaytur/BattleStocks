@@ -26,9 +26,9 @@
 </script>
 
 <main bind:this={main}>
-    <h1 class="tw:!text-text-dark tw:!my-10 tw:text-center">Server Browser</h1>
+    <h1 class="tw:!text-text-dark tw:!my-10 tw:text-center">Create Server</h1>
     <div class="tw:container tw:mx-auto tw:w-1/4">
-        <div class="card tw:!bg-background-secondary">
+        <div class="card tw:!bg-primary tw:!border-primary">
             <div class="card-body">
                 <div class="tw:mb-4 tw:text-center">
                     <label for="email" class="form-label tw:text-text-dark">Server Name</label>
@@ -47,8 +47,8 @@
                 </div>
 
                 <form action="?/create">
-                    <div class="tw:flex">
-                        <button type="submit" class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
+                    <div class="tw:flex tw:justify-center">
+                        <button type="submit" class="btn btn-block tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
                             <div>Create Game</div>
                         </button>
                     </div>

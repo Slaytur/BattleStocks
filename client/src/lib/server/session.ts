@@ -25,14 +25,14 @@ export function generateSessionToken (): string {
 
 export async function createSession (token: string, userId: number): Promise<SessionDoc> {
     const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
-    const session: SessionDoc = {
-        id: sessionId,
+    const session: typeof Session.$inferInsert = {
+        sessionId: sessionId,
         userId,
         expiresAt: new Date(Date.now() + 2592e6) // 30 days
     };
 
     await db.insert(Session).values(session);
-    return session;
+    return session as SessionDoc;
 }
 
 export async function validateSessionToken (token: string): Promise<SessionValidationResult> {
@@ -41,13 +41,13 @@ export async function validateSessionToken (token: string): Promise<SessionValid
         .select({ user: User, session: Session })
         .from(Session)
         .innerJoin(User, eq(Session.userId, User.id))
-        .where(eq(Session.id, sessionId));
+        .where(eq(Session.sessionId, sessionId));
 
     if (result.length < 1) return { session: null, user: null };
 
     const { user, session } = result[0];
     if (Date.now() >= session.expiresAt.getTime()) {
-        await db.delete(Session).where(eq(Session.id, session.id));
+        await db.delete(Session).where(eq(Session.sessionId, session.sessionId));
         return { session: null, user: null };
     }
 
@@ -58,14 +58,14 @@ export async function validateSessionToken (token: string): Promise<SessionValid
             .set({
                 expiresAt: session.expiresAt
             })
-            .where(eq(Session.id, session.id));
+            .where(eq(Session.sessionId, session.sessionId));
     }
 
     return { session, user };
 }
 
 export async function invalidateSession (sessionId: string): Promise<void> {
-    await db.delete(Session).where(eq(Session.id, sessionId));
+    await db.delete(Session).where(eq(Session.sessionId, sessionId));
 }
 
 export async function invalidateAllSessions (userId: number): Promise<void> {

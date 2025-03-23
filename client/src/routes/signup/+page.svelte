@@ -55,25 +55,3 @@
         </div>
     </div>
 </main>
-
-<style lang="scss">
-    a, span {
-        font-family: "Roboto";
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    a {
-        font-size: 0.85rem;
-        line-height: 1.5rem;
-    }
-
-    span {
-        font-size: 0.85rem;
-        line-height: 2.1rem;
-        color: hsla(0, 0%, 75%);
-    }
-    hr {
-        color: hsl(0, 0%, 100%);
-    }
-</style>

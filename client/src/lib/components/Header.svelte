@@ -24,6 +24,7 @@
                 <div class="navbar-nav me-auto tw:font-medium">
                     <a class="nav-link" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
                     <a class="nav-link" class:active={page.url.pathname === "/servers"} href="/servers">Server Browser</a>
+                    <a class="nav-link" class:active={page.url.pathname === "/about"} href="/about">About</a>
                 </div>
                 <div class="navbar-nav ms-auto tw:font-medium">
                     {#if false}

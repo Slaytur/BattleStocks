@@ -15,6 +15,5 @@ export const actions: Actions = {
             password: data.get("password") as string
         };
         const res = await loginUserFromCreds(user.email, user.password);
-        console.log(res);
     }
 };

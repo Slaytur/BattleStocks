@@ -1,7 +1,7 @@
-import type { InferSelectModel } from "drizzle-orm";
 import {
     integer,
     pgTable,
+    serial,
     text,
     timestamp
 } from "drizzle-orm/pg-core";
@@ -9,7 +9,9 @@ import {
 import { User } from "./User";
 
 export const Session = pgTable("session", {
-    id: text("id").primaryKey(),
+    id: serial("id").primaryKey(),
+    sessionId: text("sessionId")
+        .notNull(),
     userId: integer("user_id")
         .notNull()
         .references(() => User.id),

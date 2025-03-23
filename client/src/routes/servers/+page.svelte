@@ -1,7 +1,7 @@
 <script lang="ts">
     import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
     import { faDiscord, faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
-    import type { Server } from "../../../../shared/typing/types";
+    import type { Server } from "../../../../shared/typings/types";
 
     import gsap from "gsap";
     import { onMount } from "svelte";
@@ -12,10 +12,10 @@
     let query: string = $state("");
 
     let servers: Server[] = [
-        {name: "Charlie's Server", phases: 10, gameId: "123"}, 
-        {name: "Benjamin's Server", phases: 5, gameId: "213"}, 
-        {name: "Ahan's Server", phases: 2, gameId: "132"},
-        {name: "Quentin's Server", phases: 15, gameId: "231"}
+        { name: "Charlie's Server", phases: 10, gameId: "123" },
+        { name: "Benjamin's Server", phases: 5, gameId: "213" },
+        { name: "Ahan's Server", phases: 2, gameId: "132" },
+        { name: "Quentin's Server", phases: 15, gameId: "231" }
     ];
 
     onMount(() => {
@@ -51,8 +51,8 @@
                             {/each}
                         </ul>
                     </div>
-                    <div class="tw:flex">
-                        <button onclick={(() => window.open("/servers/create", "_self"))} class="btn btn-block tw:w-full tw:!bg-secondary-dark tw:!text-white tw:!border-secondary-dark tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
+                    <div class="tw:flex tw:flex-col">
+                        <button onclick={(() => window.open("/servers/create", "_self"))} class="btn btn-block tw:!bg-secondary tw:!text-white tw:!border-secondary tw:hover:brightness-50 tw:duration-300 tw:!transition-all">
                             <div>Create Game</div>
                         </button>
                     </div>

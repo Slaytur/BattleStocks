@@ -7,10 +7,10 @@
     import { AppState } from "$lib/components/game/app.svelte";
 </script>
 
-{#if core.app.state === AppState.ServerBrowser || core.app.state === AppState.Joining}
-    <ServerBrowser />
-{:else if core.app.state === AppState.Lobby || core.app.state === AppState.Queuing || core.app.state === AppState.Playing}
+<!-- {#if core.app.state === AppState.ServerBrowser || core.app.state === AppState.Joining} -->
+<!--     <ServerBrowser /> -->
+<!-- {:else if core.app.state === AppState.Lobby || core.app.state === AppState.Queuing || core.app.state === AppState.Playing} -->
     <GameUI />
-{:else}
-    <GameOver />
-{/if}
+<!-- {:else} -->
+<!--     <GameOver /> -->
+<!-- {/if} -->

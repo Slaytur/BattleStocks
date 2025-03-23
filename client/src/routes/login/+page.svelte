@@ -33,9 +33,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="tw:flex tw:flex-col">
-                    <a class="btn btn-block tw:!bg-black tw:!my-1 tw:!text-white tw:hover:brightness-50 tw:duration-300 tw:!transition-all tw:!flex tw:align-middle tw:justify-center tw:items-center" href="/login/discord" class:disabled={loginBtn === 0} onclick={(() => { loginBtn = 0; })}>
+                    <a class="btn btn-block tw:!border-black tw:!my-1 tw:!text-black tw:hover:brightness-50 tw:duration-300 tw:!transition-all tw:!flex tw:align-middle tw:justify-center tw:items-center" href="/login/discord" class:disabled={loginBtn === 0} onclick={(() => { loginBtn = 0; })}>
                         {#if loginBtn !== 0}
-                            <FontAwesomeIcon icon={faDiscord} class="tw:me-2 tw:bg-[#000000] tw:p-1 tw:rounded-2xl tw:!justify-self-start" />
+                            <FontAwesomeIcon icon={faDiscord} class="tw:me-2 tw:p-1 tw:rounded-2xl tw:!justify-self-start" />
                             Sign in with Discord
                         {:else}
                             <div class="ui-spinner"></div>
@@ -87,11 +87,16 @@
 </main>
 
 <style lang="scss">
+    a {
+        font-size: 0.8rem;
+    }
+
     a, span {
         font-family: "Roboto";
         font-weight: bold;
         text-transform: uppercase;
     }
+
     a, button, .ui-spinner {
         line-height: 1.75rem;
     }

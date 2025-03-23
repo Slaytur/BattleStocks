@@ -10,7 +10,7 @@
 </script>
 
 <svelte:window bind:scrollY={scrollY} />
-<header>
+<header class="{page.url.pathname === "/" ? "tw:!fixed tw:z-40" : ""} tw:w-full tw:bg-background">
     <nav bind:this={nav} class="navbar navbar-dark navbar-expand-lg" class:scrolled={scrollY !== nav?.offsetTop}>
         <div class="container-fluid tw:lg:!px-20 tw:px-2 tw:py-1">
             <a class="navbar-brand tw:font-roboto tw:!text-[#188654] tw:font-bold tw:!text-2xl tw:tracking-wide" href="/">

@@ -40,10 +40,10 @@ export class Game {
 
         switch (this.state) {
             case GameState.Queuing: {
-                if (this.timer < 0) {
+                if (this.timer < 0)
                     this.timer = 5;
-                }
-                if (this.timer === 0){
+
+                if (this.timer === 0) {
                     this.state = GameState.BuyPhase;
                     this.timer = 90;
                 }
@@ -70,7 +70,7 @@ export class Game {
         }
     }
 
-    sendEventSelection() {
+    sendEventSelection () {
         for (const player of [...this.players.values()]) {
             player.ws.send(JSON.stringify({
                 type: WSServerMessageTypes.EventSelection,

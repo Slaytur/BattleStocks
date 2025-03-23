@@ -14,6 +14,7 @@ export interface WSData {
 export enum WSClientMessageTypes {
     Handshake,
     Create,
+    Start,
     Join,
     UpdateStocks,
     ChooseEvent
@@ -22,12 +23,14 @@ export enum WSClientMessageTypes {
 export enum WSServerMessageTypes {
     Handshake,
     Connect,
+    EventSelection,
     Snapshot
 }
 
 export type WSClientMessages =
     | { type: WSClientMessageTypes.Handshake }
     | { type: WSClientMessageTypes.Create, name: string, phases: number }
+    | { type: WSClientMessageTypes.Start}
     | { type: WSClientMessageTypes.Join, name: string, code: number }
     | { type: WSClientMessageTypes.UpdateStocks, name: string, amount: number }
     | { type: WSClientMessageTypes.ChooseEvent, id: number };
@@ -35,7 +38,9 @@ export type WSClientMessages =
 export type WSServerMessages =
     | { type: WSServerMessageTypes.Handshake, games: Game[] }
     | { type: WSServerMessageTypes.Connect, id: number, gameId: number }
+    | { type: WSServerMessageTypes.EventSelection, options: number[] }
     | { type: WSServerMessageTypes.Snapshot, data: any };
+
 
 export interface PlayerSnap {
     name: string

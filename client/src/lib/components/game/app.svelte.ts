@@ -3,6 +3,7 @@ import { WSClientMessageTypes, WSServerMessageTypes, type Server, type WSServerM
 export enum AppState {
     Initial,
     ServerBrowser,
+    Creating,
     Joining,
     Lobby,
     Queuing,
@@ -11,10 +12,16 @@ export enum AppState {
 }
 
 export class Application {
-    state = AppState.ServerBrowser;
+    state = $state(AppState.Initial);
 
     ws: WebSocket | null = null;
-    servers: Server[] = [];
+    servers: Server[] = $state([]);
+
+    playerName = $state("");
+
+    serverName = $state("");
+    serverPIN = $state();
+    serverPhases = $state(4);
 
     connect () {
         this.ws = new WebSocket(`ws://localhost:8080/api/game`);

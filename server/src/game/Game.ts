@@ -8,7 +8,7 @@ import { randInt } from "../../../shared/src/utils/math";
 
 import events from "../../../shared/data/events.json";
 
-import { Server } from "../../../shared/typings/types";
+import { Server, WSServerMessageTypes } from "../../../shared/typings/types";
 
 export enum GameState {
     Lobby,
@@ -22,7 +22,7 @@ export class Game {
     state = GameState.Lobby;
     players = new Map<number, Player>();
 
-    timer = 0;
+    timer = -1;
 
     stocks = new Map<string, Stock>();
 
@@ -31,6 +31,53 @@ export class Game {
     eventOptions: number[] = [];
 
     constructor (public id: number, public name: string, public phases: number) {}
+
+    /**
+     * Runs every time that a websocket sends data.
+     */
+    logic () {
+        if (this.timer >= 0) this.timer--;
+
+        switch (this.state) {
+            case GameState.Queuing: {
+                if (this.timer < 0) {
+                    this.timer = 5;
+                }
+                if (this.timer === 0){
+                    this.state = GameState.BuyPhase;
+                    this.timer = 90;
+                }
+                break;
+            }
+            case GameState.BuyPhase: {
+                if (this.timer === 0) {
+                    this.state = GameState.EventSelectionPhase;
+                    this.timer = 30;
+                    this.sendEventSelection();
+                }
+                break;
+            }
+            case GameState.EventSelectionPhase: {
+                if (this.timer === 0) {
+                    this.state = GameState.GameOver;
+                    this.timer = 0;
+                }
+                break;
+            }
+            case GameState.GameOver: {
+                break;
+            }
+        }
+    }
+
+    sendEventSelection() {
+        for (const player of [...this.players.values()]) {
+            player.ws.send(JSON.stringify({
+                type: WSServerMessageTypes.EventSelection,
+                options: this.eventOptions
+            }));
+        }
+    }
 
     addPlayer (player: Player) {
         const playerId = this.playerAllocator.getNextId();

@@ -58,6 +58,11 @@ app.get("/api/game", upgradeWebSocket(c => ({
                 break;
             }
 
+            case WSClientMessageTypes.Start: {
+                // somehow get the gameId
+                break;
+            }
+
             case WSClientMessageTypes.Join: {
                 if (typeof e.data.code !== "string" || typeof e.data.name !== "string") return;
 

@@ -4,7 +4,7 @@ import { cors } from "hono/cors";
 import { createBunWebSocket } from "hono/bun";
 import { WSContext } from "hono/ws";
 
-import { WSData, WSClientMessageTypes, type WSClientMessages, WSServerMessages, WSServerMessageTypes } from "../../shared/typings/types";
+import { WSData, WSClientMessageTypes, type WSClientMessages, WSServerMessages, WSServerMessageTypes, Server } from "../../shared/typings/types";
 
 import type { ServerWebSocket } from "bun";
 import { core } from "./core";
@@ -27,16 +27,19 @@ app.use(
 app.get("/api/game", upgradeWebSocket(c => ({
     onOpen (e, ws) {
         core.logger.info("WebSocket", "Player connected.");
-        
-        ws.send(JSON.stringify({
-            type: WSClientMessageTypes.GamesList,
-            games: [{ name: "game", gameId: 123, phases: 5 }]
-        }));
     },
 
     // @ts-expect-error We know that this is a Bun WebSocket.
     onMessage (e: MessageEvent<WSClientMessages>, ws: WSContext<ServerWebSocket<WSData>>) {
         switch (e.data.type) {
+            case WSClientMessageTypes.Handshake: {
+                ws.send(JSON.stringify({
+                    type: WSServerMessageTypes.Handshake,
+                    games: getServers()
+                } as WSServerMessages));
+                break;
+            }
+
             case WSClientMessageTypes.Create: {
                 if (typeof e.data.name !== "string") return;
 
@@ -107,6 +110,13 @@ const getPlayer = (ws: WSContext<ServerWebSocket<WSData>>): Player | undefined =
 
     const player = game.players.get(ws.raw!.data.id);
     return player;
+};
+
+const getServers = (): Server[] => {
+    const servers: Server[] = [];
+
+    for (const game of [...core.games.values()]) servers.push(game.serverSnap());
+    return servers;
 };
 
 export const sendGameSnap = (game: Game) => {

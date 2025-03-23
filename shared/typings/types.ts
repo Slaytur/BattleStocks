@@ -1,7 +1,9 @@
 export type Server = {
     name: string
     gameId: number
+    state: number
     phases: number
+    players: number
 };
 
 export interface WSData {
@@ -10,9 +12,9 @@ export interface WSData {
 }
 
 export enum WSClientMessageTypes {
+    Handshake,
     Create,
     Join,
-    GamesList,
     UpdateStocks,
     ChooseEvent
 }
@@ -24,11 +26,11 @@ export enum WSServerMessageTypes {
 }
 
 export type WSClientMessages =
+    | { type: WSClientMessageTypes.Handshake }
     | { type: WSClientMessageTypes.Create, name: string, phases: number }
     | { type: WSClientMessageTypes.Join, name: string, code: number }
     | { type: WSClientMessageTypes.UpdateStocks, name: string, amount: number }
-    | { type: WSClientMessageTypes.ChooseEvent, id: number }
-    | { type: WSClientMessageTypes.GamesList, servers: Server[] };
+    | { type: WSClientMessageTypes.ChooseEvent, id: number };
 
 export type WSServerMessages =
     | { type: WSServerMessageTypes.Handshake, games: Game[] }

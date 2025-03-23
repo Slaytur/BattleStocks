@@ -1,4 +1,4 @@
-import { WSMessageType, WSServerMessageTypes, type Server, type WSServerMessages } from "../../../../../shared/typings/types";
+import { WSClientMessageTypes, WSServerMessageTypes, type Server, type WSServerMessages } from "../../../../../shared/typings/types";
 
 export enum AppState {
     Initial,
@@ -20,17 +20,17 @@ export class Application {
         this.ws = new WebSocket(`ws://localhost:8080/api/game`);
 
         this.ws.onopen = () => {
+            this.ws?.send(JSON.stringify({
+                type: WSClientMessageTypes.Handshake
+            }));
         };
 
-        this.ws.onmessage = (event) => {
-            let message = JSON.parse(event.data);
-            console.log(message.type);
+        this.ws.onmessage = (event: MessageEvent<string>) => {
+            const data = JSON.parse(event.data) as WSServerMessages;
             try {
-                switch (event.data.type){
-                    case WSServerMessageTypes.Connect:
-                        event.data.
-                    case WSMessageType.GamesList:
-                        this.servers = message.games;
+                switch (data.type) {
+                    case WSServerMessageTypes.Handshake:
+                        this.servers = data.games;
                         break;
                     default:
                         break;

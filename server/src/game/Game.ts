@@ -7,7 +7,8 @@ import { IDAllocator } from "../../../shared/src/utils/IDAllocator";
 import { randInt } from "../../../shared/src/utils/math";
 
 import events from "../../../shared/data/events.json";
-import { Unpacked } from "../../../shared/typings/types";
+
+import { Server } from "../../../shared/typings/types";
 
 export enum GameState {
     Lobby,
@@ -64,6 +65,16 @@ export class Game {
         for (const player of [...this.players.values()]) player.ws.close();
         core.games.delete(this.id);
         core.gameAllocator.give(this.id);
+    }
+
+    serverSnap (): Server {
+        return {
+            name: this.name,
+            gameId: this.id,
+            state: this.state,
+            phases: this.phases,
+            players: this.players.size
+        };
     }
 
     snap () {

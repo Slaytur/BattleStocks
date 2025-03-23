@@ -5,6 +5,7 @@
 
     import { core } from "$lib/components/game/core.svelte";
     import { AppState } from "$lib/components/game/app.svelte";
+    import Overlay from "$lib/components/game/Overlay.svelte";
 </script>
 
 {#if

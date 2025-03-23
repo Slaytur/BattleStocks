@@ -33,6 +33,7 @@
     "@popperjs/core": "^2.11.8",
     "arctic": "^3.5.0",
     "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.8",
     "drizzle-kit": "^0.30.5",
     "drizzle-orm": "^0.41.0",
     "hono": "^4.7.5",

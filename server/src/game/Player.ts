@@ -7,7 +7,7 @@ import events from "../../../shared/data/events.json";
 import stocks from "../../../shared/data/stocks.json";
 
 import { core } from "../core";
-import { PlayerSnap } from "../../../shared/typings/types";
+import { PlayerSnap, WSData } from "../../../shared/typings/types";
 
 export enum PlayerState {
     Joining,
@@ -33,7 +33,7 @@ export class Player {
 
     votedEvent = -1;
 
-    constructor (public gameId: number, public ws: WSContext<ServerWebSocket>, public name: string) {}
+    constructor (public gameId: number, public ws: WSContext<ServerWebSocket<WSData>>, public name: string) {}
 
     buyStocks (stock: Stock, amount: number): boolean {
         const cost = stock.value * amount;

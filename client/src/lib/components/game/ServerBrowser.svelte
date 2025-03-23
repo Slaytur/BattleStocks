@@ -26,7 +26,7 @@
                 <div class="col-sm-2">0</div>
                 <div class="col-sm-2">{server.phases}</div>
                 <div class="col-sm-2">
-                    <button onclick={() => window.location.href = `/game/${server.gameId}`} class="btn btn-block tw:!bg-secondary">
+                    <button onclick={() => window.location.href = `/game/${server.gameId}`} class="btn btn-block tw:!bg-secondary tw:!text-white tw:flex tw:flex-row tw:items-center">
                         <div>Join Game</div>
                     </button>
                 </div>

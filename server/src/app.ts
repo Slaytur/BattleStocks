@@ -4,7 +4,7 @@ import { cors } from "hono/cors";
 import { createBunWebSocket } from "hono/bun";
 import { WSContext } from "hono/ws";
 
-import { WSData, WSMessageType, type WSMessages } from "../../shared/typings/types";
+import { WSData, WSClientMessageTypes, type WSClientMessages, WSServerMessages, WSServerMessageTypes } from "../../shared/typings/types";
 
 import type { ServerWebSocket } from "bun";
 import { core } from "./core";
@@ -29,57 +29,68 @@ app.get("/api/game", upgradeWebSocket(c => ({
         core.logger.info("WebSocket", "Player connected.");
         
         ws.send(JSON.stringify({
-            type: WSMessageType.GamesList,
+            type: WSClientMessageTypes.GamesList,
             games: [{ name: "game", gameId: 123, phases: 5 }]
         }));
     },
 
     // @ts-expect-error We know that this is a Bun WebSocket.
-    onMessage (e, ws: WSContext<ServerWebSocket<WSData>>) {
-        const data = e.data as unknown as WSMessages;
+    onMessage (e: MessageEvent<WSClientMessages>, ws: WSContext<ServerWebSocket<WSData>>) {
+        switch (e.data.type) {
+            case WSClientMessageTypes.Create: {
+                if (typeof e.data.name !== "string") return;
 
-        if (data.type === WSMessageType.Create) {
-            if (typeof data.name !== "string") return;
+                const gameId = core.gameAllocator.getNextId();
+                const game = new Game(gameId, e.data.name, e.data.phases);
 
-            const gameId = core.gameAllocator.getNextId();
-            const game = new Game(gameId, data.name, data.phases);
+                if (game.state !== GameState.Lobby) return; // todo: error handling
 
-            if (game.state !== GameState.Lobby) return; // todo: error handling
+                const player = new Player(gameId, ws, e.data.name);
+                player.rank = PlayerRank.Host;
 
-            const player = new Player(gameId, ws, data.name);
-            player.rank = PlayerRank.Host;
+                if (ws.raw) ws.raw.data.id = player.id;
 
-            if (ws.raw) ws.raw.data.id = player.id;
+                game.addPlayer(player);
+                core.games.set(gameId, game);
+                break;
+            }
 
-            game.addPlayer(player);
-            core.games.set(gameId, game);
-        } else if (data.type === WSMessageType.Join) {
-            if (typeof data.code !== "string" || typeof data.name !== "string") return;
+            case WSClientMessageTypes.Join: {
+                if (typeof e.data.code !== "string" || typeof e.data.name !== "string") return;
 
-            const game = core.games.get(data.code);
-            if (!game || game.state !== GameState.Lobby) return; // todo: error handling
+                const game = core.games.get(e.data.code);
+                if (!game || game.state !== GameState.Lobby) return; // todo: error handling
 
-            const player = new Player(data.code, ws, data.name);
-            game.addPlayer(player);
-        } else if (data.type === WSMessageType.UpdateStocks) {
-            if (typeof data.name !== "string" || typeof data.amount !== "string" || !ws.raw) return;
+                const player = new Player(e.data.code, ws, e.data.name);
+                game.addPlayer(player);
+                break;
+            }
 
-            const game = core.games.get(ws.raw.data.gameId);
-            if (!game) return;
+            case WSClientMessageTypes.UpdateStocks: {
+                if (typeof e.data.name !== "string" || typeof e.data.amount !== "string" || !ws.raw) return;
 
-            const player = game.players.get(ws.raw.data.id);
-            const stock = game.stocks.get(data.name);
+                const game = core.games.get(ws.raw.data.gameId);
+                if (!game) return;
 
-            if (!player || !stock) return;
+                const player = game.players.get(ws.raw.data.id);
+                const stock = game.stocks.get(e.data.name);
 
-            const success = data.amount > 0
-                ? player?.buyStocks(stock, data.amount)
-                : player?.sellStocks(stock, -data.amount);
-        } else if (data.type === WSMessageType.ChooseEvent) {
-            if (typeof data.id !== "number") return;
+                if (!player || !stock) return;
 
-            const player = getPlayer(ws);
-            player?.chooseEvent(data.id);
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const success = e.data.amount > 0
+                    ? player?.buyStocks(stock, e.data.amount)
+                    : player?.sellStocks(stock, -e.data.amount);
+                break;
+            }
+
+            case WSClientMessageTypes.ChooseEvent: {
+                if (typeof e.data.id !== "number") return;
+
+                const player = getPlayer(ws);
+                player?.chooseEvent(e.data.id);
+                break;
+            }
         }
     },
 
@@ -96,6 +107,17 @@ const getPlayer = (ws: WSContext<ServerWebSocket<WSData>>): Player | undefined =
 
     const player = game.players.get(ws.raw!.data.id);
     return player;
+};
+
+export const sendGameSnap = (game: Game) => {
+    const snap = game.snap();
+
+    for (const player of [...game.players.values()]) {
+        player.ws.raw?.send(JSON.stringify({
+            type: WSServerMessageTypes.Snapshot,
+            data: snap
+        } as WSServerMessages));
+    }
 };
 
 Bun.serve({

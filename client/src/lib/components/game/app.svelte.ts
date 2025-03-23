@@ -1,4 +1,4 @@
-import { WSMessageType, type Server } from "../../../../../shared/typings/types";
+import { WSMessageType, WSServerMessageTypes, type Server, type WSServerMessages } from "../../../../../shared/typings/types";
 
 export enum AppState {
     Initial,
@@ -26,7 +26,9 @@ export class Application {
             let message = JSON.parse(event.data);
             console.log(message.type);
             try {
-                switch (message.type){
+                switch (event.data.type){
+                    case WSServerMessageTypes.Connect:
+                        event.data.
                     case WSMessageType.GamesList:
                         this.servers = message.games;
                         break;

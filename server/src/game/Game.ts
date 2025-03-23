@@ -65,4 +65,19 @@ export class Game {
         core.games.delete(this.id);
         core.gameAllocator.give(this.id);
     }
+
+    snap () {
+        const players = [];
+        const stocks = [];
+
+        for (const player of [...this.players.values()]) players.push(player.snap());
+        for (const stock of [...this.stocks.values()]) stocks.push(stock.snap());
+
+        return {
+            state: this.state,
+            players,
+            stocks,
+            timer: this.timer
+        };
+    }
 }

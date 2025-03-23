@@ -1,4 +1,5 @@
 import { randomNormal } from "../../../shared/src/utils/math";
+import { StockSnap } from "../../../shared/typings/types";
 
 const STEPS = 320;
 
@@ -81,7 +82,7 @@ export class Stock {
             : this.value / (this.value - this.prevPrevValue);
     }
 
-    snap () {
+    snap (): StockSnap {
         return {
             name: this.name,
             category: this.category,

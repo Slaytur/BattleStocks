@@ -9,7 +9,7 @@ export interface WSData {
     gameId: number
 }
 
-export enum WSMessageType {
+export enum WSClientMessageTypes {
     Create,
     Join,
     GamesList,
@@ -17,11 +17,49 @@ export enum WSMessageType {
     ChooseEvent
 }
 
-export type WSMessages =
-    | { type: WSMessageType.Create, name: string, phases: number }
-    | { type: WSMessageType.Join, name: string, code: number }
-    | { type: WSMessageType.UpdateStocks, name: string, amount: number }
-    | { type: WSMessageType.ChooseEvent, id: number }
-    | { type: WSMessageType.GamesList, servers: Server[] };
+export enum WSServerMessageTypes {
+    Handshake,
+    Connect,
+    Snapshot
+}
+
+export type WSClientMessages =
+    | { type: WSClientMessageTypes.Create, name: string, phases: number }
+    | { type: WSClientMessageTypes.Join, name: string, code: number }
+    | { type: WSClientMessageTypes.UpdateStocks, name: string, amount: number }
+    | { type: WSClientMessageTypes.ChooseEvent, id: number }
+    | { type: WSClientMessageTypes.GamesList, servers: Server[] };
+
+export type WSServerMessages =
+    | { type: WSServerMessageTypes.Handshake, games: Game[] }
+    | { type: WSServerMessageTypes.Connect, id: number, gameId: number }
+    | { type: WSServerMessageTypes.Snapshot, data: any };
+
+export interface PlayerSnap {
+    name: string
+    state: number
+    rank: number
+    balance: number
+    db: number
+}
+
+export interface StockSnap {
+    name: string
+    category: string
+    history: number[]
+    value: number
+    prevValue: number
+    oneMonthAvg: number
+    oneMonthMin: number
+    oneMonthPERatio: number
+    twoMonthPERatio: number
+}
+
+export interface GameSnap {
+    state: number
+    players: PlayerSnap[]
+    stocks: StockSnap[]
+    timer: number
+}
 
 export type Unpacked<T> = T extends Array<infer U> ? U : T;

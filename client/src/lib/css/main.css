@@ -9,8 +9,8 @@
 @theme {
     /* Light theme */
     --color-text: hsl(221, 100%, 94%);
-    --color-background: hsl(134, 46%, 83%);
-    --color-background-secondary: hsl(222, 100%, 2%);
+    --color-background: hsl(134 27% 94%);
+    --color-background-secondary: hsl(134, 46%, 83%);
     --color-primary: #2f6141;
     --color-secondary: #51d381;
     --color-accent: hsl(273, 100%, 50%);

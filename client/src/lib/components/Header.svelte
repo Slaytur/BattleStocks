@@ -11,9 +11,9 @@
 
 <svelte:window bind:scrollY={scrollY} />
 <header>
-    <nav bind:this={nav} class="navbar navbar-dark navbar-expand-lg tw:bg-[#2f6141]" class:scrolled={scrollY !== nav?.offsetTop}>
-        <div class="container-fluid">
-            <a class="navbar-brand tw:font-chewy" href="/">
+    <nav bind:this={nav} class="navbar navbar-dark navbar-expand-lg" class:scrolled={scrollY !== nav?.offsetTop}>
+        <div class="container-fluid tw:lg:!px-20 tw:px-2 tw:py-1">
+            <a class="navbar-brand tw:font-roboto tw:!text-[#188654] tw:font-bold tw:!text-2xl tw:tracking-wide" href="/">
                 <!-- <img src={Logo} alt="Voyago logo" width="30" height="24" class="d-inline-block align-text-top hover:tw:rotate-90 tw:transition-all"> -->
                 BattleStocks
             </a>
@@ -22,9 +22,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar-nav">
                 <div class="navbar-nav me-auto tw:font-medium">
-                    <a class="nav-link" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
-                    <a class="nav-link" class:active={page.url.pathname === "/servers"} href="/servers">Server Browser</a>
-                    <a class="nav-link" class:active={page.url.pathname === "/about"} href="/about">About</a>
+                    <a class="nav-link tw:!text-black" class:active={page.url.pathname === "/dashboard"} href="/dashboard">Dashboard</a>
+                    <a class="nav-link tw:!text-black" class:active={page.url.pathname === "/servers"} href="/servers">Server Browser</a>
+                    <a class="nav-link tw:!text-black" class:active={page.url.pathname === "/about"} href="/about">About</a>
                 </div>
                 <div class="navbar-nav ms-auto tw:font-medium">
                     {#if false}
@@ -43,8 +43,8 @@
                             </ul>
                         </div>
                     {:else}
-                        <a href="/signup" class="btn btn-success tw:me-2">Sign Up</a>
-                        <a href="/login" class="btn btn-success">Sign In</a>
+                        <a href="/login" class="btn btn-success  tw:!border-none tw:me-2">Sign In</a>
+                        <a href="/signup" class="btn btn-success  tw:!border-none">Sign Up</a>
                     {/if}
                 </div>
             </div>

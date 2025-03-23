@@ -58,21 +58,25 @@ app.get("/api/game", upgradeWebSocket(c => ({
                 player.rank = PlayerRank.Host;
 
                 if (ws.raw) ws.raw.data.id = player.id;
-
-                core.logger.debug(`Game #${gameId}`, `Creating game ${gameId}`);
+                core.logger.debug("WebSocket", `Creating game #${gameId}.`);
 
                 game.addPlayer(player);
                 core.games.set(gameId, game);
+
+                ws.send(JSON.stringify({
+                    type: WSServerMessageTypes.Connect,
+                    id: player.id,
+                    game: game.snap()
+                } as WSServerMessages));
 
                 sendGameSnap(game);
                 break;
             }
 
             case WSClientMessageTypes.Start: {
-                // somehow get the gameId
                 const gameId = ws.raw?.data.id;
-
                 const game = core.games.get(gameId!);
+
                 if (!game) return;
                 break;
             }
@@ -142,7 +146,7 @@ export const sendGameSnap = (game: Game) => {
     const snap = game.snap();
 
     for (const player of [...game.players.values()]) {
-        player.ws.raw?.send(JSON.stringify({
+        player.ws.send(JSON.stringify({
             type: WSServerMessageTypes.Snapshot,
             data: snap
         } as WSServerMessages));

@@ -37,11 +37,11 @@ export type WSClientMessages =
     | { type: WSClientMessageTypes.ChooseEvent, id: number };
 
 export type WSServerMessages =
-    | { type: WSServerMessageTypes.Handshake, games: Game[] }
-    | { type: WSServerMessageTypes.Connect, id: number, gameId: number }
+    | { type: WSServerMessageTypes.Handshake, games: Server[] }
+    | { type: WSServerMessageTypes.Connect, id: number, game: GameSnap }
     | { type: WSServerMessageTypes.EventSelection, options: number[] }
     | { type: WSServerMessageTypes.Snapshot, data: any }
-    | { type: WSServerMessageTypes.GameOver, winner: string }
+    | { type: WSServerMessageTypes.GameOver, winner: string };
 
 export interface PlayerSnap {
     name: string

@@ -36,7 +36,7 @@ export class Player {
 
     constructor (public gameId: number, public ws: WSContext<ServerWebSocket<WSData>>, public name: string) {}
 
-    getAssetValue(game: Game){
+    getAssetValue (game: Game) {
         let value = this.balance;
         for (const [name, amount] of this.stocks) {
             const stock = game.stocks.get(name);

@@ -36,7 +36,6 @@ export async function GET (event: RequestEvent): Promise<Response> {
 
     // todo: fix any
     const claims: any = decodeIdToken(tokens.idToken());
-    console.log(claims);
 
     const googleId = claims.googleId; // claimsParser.getString("sub");
     const name = claims.name; // claimsParser.getString("name");

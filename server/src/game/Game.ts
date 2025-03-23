@@ -48,6 +48,7 @@ export class Game {
 
                 if (this.timer === 0) {
                     this.state = GameState.BuyPhase;
+                    this.sendSnapshots();
                     this.timer = 90;
                 }
                 break;
@@ -64,13 +65,14 @@ export class Game {
             case GameState.EventSelectionPhase: {
                 if (this.timer === 0) {
                     this.currentPhase++;
-
+                    this.currentEvent = this.eventOptions.sort()[0];
                     if (this.currentPhase === this.phases)
                         this.state = GameState.GameOver;
 
                     else {
                         this.state = GameState.BuyPhase;
                         this.timer = 90;
+                        this.sendSnapshots();
                     }
                     this.timer = -1;
                 }
@@ -84,6 +86,15 @@ export class Game {
         }
     }
 
+    sendSnapshots () {
+        for (const player of [...this.players.values()]) {
+            player.ws.send(JSON.stringify({
+                type: WSServerMessageTypes.Snapshot,
+                game: this.snap()
+            }));
+        }
+    }
+
     sendEventSelection () {
         for (const player of [...this.players.values()]) {
             player.ws.send(JSON.stringify({
@@ -94,7 +105,7 @@ export class Game {
     }
 
     broadcastGameOver () {
-        const playerWinner: string = this.getWinner(); 
+        const playerWinner: string | null = this.getWinner();
         for (const player of [...this.players.values()]) {
             player.ws.send(JSON.stringify({
                 type: WSServerMessageTypes.GameOver,
@@ -114,7 +125,7 @@ export class Game {
             }
         }
 
-        return winner!.name;
+        return winner?.name ?? null;
     }
 
     addPlayer (player: Player) {
@@ -173,6 +184,8 @@ export class Game {
             state: this.state,
             players,
             stocks,
+            currentPhase: this.currentPhase,
+            event: this.currentEvent,
             timer: this.timer
         };
     }

@@ -14,8 +14,7 @@ export const actions: Actions = {
             email: data.get("email") as string,
             password: data.get("password") as string
         };
-        const res = await createUserFromCreds(user.email, user.password);
 
-        console.log(res);
+        await createUserFromCreds(user.email, user.password);
     }
 };

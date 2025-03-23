@@ -1,6 +1,7 @@
 import {
     WSClientMessageTypes,
     WSServerMessageTypes,
+    type GameSnap,
     type Server,
     type WSClientMessages,
     type WSServerMessages
@@ -19,6 +20,9 @@ export enum AppState {
 
 export class Application {
     state = $state(AppState.Initial);
+    selectionPhase = $state(false);
+    currentEventOptions = $state([0, 0, 0]);
+    winner = $state("");
 
     ws: WebSocket | null = null;
     servers: Server[] = $state([]);
@@ -30,6 +34,8 @@ export class Application {
     serverPhases = $state(4);
 
     checkedForServers = $state(false);
+
+    game!: GameSnap;
 
     connect () {
         this.ws = new WebSocket(`ws://localhost:8080/api/game`);
@@ -48,6 +54,19 @@ export class Application {
                         this.servers = data.games;
                         this.checkedForServers = true;
                         break;
+                    case WSServerMessageTypes.Snapshot:
+                        this.selectionPhase = false;
+                        break;
+                    case WSServerMessageTypes.EventSelection:
+                        this.currentEventOptions = data.options;
+                        this.selectionPhase = true;
+                        break;
+                    case WSServerMessageTypes.GameOver:
+                        this.winner = data.winner;
+                        break;
+                    case WSServerMessageTypes.Connect:
+                        this.unpack(data.game);
+                        break;
                     default:
                         break;
                 }
@@ -64,8 +83,6 @@ export class Application {
     createServer () {
         if (!this.ws || this.ws.readyState === this.ws.CLOSED) this.connect();
 
-        console.log(`got here`);
-
         this.ws?.send(JSON.stringify({
             type: WSClientMessageTypes.Create,
             playerName: this.playerName,
@@ -75,8 +92,18 @@ export class Application {
         } as WSClientMessages));
     }
 
-    joinServer (id: number) {
+    joinServer (code: number) {
         if (!this.ws || this.ws.readyState === this.ws.CLOSED) this.connect();
+
+        this.ws?.send(JSON.stringify({
+            type: WSClientMessageTypes.Join,
+            name: this.playerName,
+            code
+        } as WSClientMessages));
+    }
+
+    unpack (snap: GameSnap) {
+        this.game = snap;
     }
 }
 
